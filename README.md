@@ -17,4 +17,11 @@ Workflows, both deployment and development, must be automated with the following
 - A record of total costs incurred
 
 ### Project Proposal <a name="pp"></a>
+Our proposal focused on fulfilling the project brief by using the following architecture:
+- Infrastructure as Code (IaC) deployed with Terraform
+- Configuration Management using Ansible
+- Utilising AWS CodePipeline, acting as a CI/CD server via a webhook to this repository
+- An AWS EKS Cluster that will run the app
+- Monitoring the project by using AWS services such as CloudWatch, CloudTrail and X-Ray
 
+<b>AN INITIAL ARCHITECTURE DIAGRAM NEEDS TO BE CREATED HERE</b>
