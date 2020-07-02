@@ -4,6 +4,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 ## Index
 1. [Brief](#brief)
     - [Project Proposal](#pp)
+2. [Trello Board](#trello)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -25,3 +26,6 @@ Our proposal focused on fulfilling the project brief by using the following arch
 - Monitoring the project by using AWS services such as CloudWatch, CloudTrail and X-Ray
 
 <b>AN INITIAL ARCHITECTURE DIAGRAM NEEDS TO BE CREATED HERE</b>
+
+## Trello Board <a name="trello"></a>
+In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums.
