@@ -6,6 +6,7 @@
     - docker-node
 
 - name: Install Prerequesits for External Worker Nodes
+  hosts: localhost
   connection: stack
   become: true
   roles:
