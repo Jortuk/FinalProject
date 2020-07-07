@@ -1,12 +1,12 @@
 ---
-- name: Install Local System Prerequesits
-  connection: local
-  become: true
-  roles:
-    - docker
+  - name: Install Local System Prerequesits
+    connection: local
+    become: true
+    roles:
+      - docker-tasks
 
-- name: Install Prerequesits for External Worker Nodes
-  connection: stack
-  become: true
-  roles:
-    - docker
+  - name: Install Prerequesits for External Worker Nodes
+    connection: stack
+    become: true
+    roles:
+      - docker-tasks
