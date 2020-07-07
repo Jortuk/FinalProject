@@ -8,6 +8,15 @@ spec:
   containers:
   - name: backend
     image: t2fp/backend:latest
+    env: 
+    - name: username
+      value: ${username}
+    - name: password
+      value: "group2password"
+    - name: url
+      value: "petclinicdb.cncg09p34dh0.eu-west-1.rds.amazonaws.com"
+    command: ["/bin/sh","-c"]
+    args: ["source ~/.bashrc && cat ~/.bashrc"]
     # ports:
     # - containerPort: 9966
   - name: frontend

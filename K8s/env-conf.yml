@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env
+data:
+  username: admin
+  password: group2password
+  url: petclinicdb.cncg09p34dh0.eu-west-1.rds.amazonaws.com
