@@ -8,4 +8,5 @@ ARG password
 ENV url=$url
 ENV username=$username
 ENV password=$password
+EXPOSE 9966
 CMD ["./mvnw", "spring-boot:run"]
