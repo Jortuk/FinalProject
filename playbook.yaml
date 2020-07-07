@@ -3,10 +3,10 @@
     connection: local
     become: true
     roles:
-    - docker
+      - docker
 
   - name: Install Prerequesits for External Worker Nodes
     connection: stack
     become: true
     roles:
-    - docker
+      - docker
