@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: t2fp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: nginx
+        image: t2fp/nginx:latest
+        ports:
+        - containerPort: 80
+      - name: frontend
+        image: t2fp/frontend:latest
+        ports: 
+        - containerPort: 4200
+      - name: backend
+        image: t2fp/backend:latest
+        ports:
+        - containerPort: 9966
+        env:
+        - name: username
+          value: ${username}
+        - name: password
+          value: ${password}
+        - name: url
+          value: ${url}
+  
