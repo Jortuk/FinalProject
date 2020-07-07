@@ -1,6 +1,6 @@
 
 - name: Install Local System Prerequesits
-  hosts: worker-node
+  hosts: localhost
   become: true
   roles:
     - docker-node
