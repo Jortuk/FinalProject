@@ -8,7 +8,6 @@ sudo docker push t2fp/frontend:latest
 sudo docker push t2fp/backend:latest
 
 
-#kubectl create -f t2fp-deployment.yml
 
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/kubectl
 chmod +x ./kubectl
@@ -23,3 +22,4 @@ kubectl version --short --client
 #sleep 20
 #kubectl create -f /var/lib/jenkins/workspace/pet_clinic/K8s/nginx.yml
 kubectl create -f ./K8s
+kubectl create -f ./K8s/t2fp-deployment.yml
