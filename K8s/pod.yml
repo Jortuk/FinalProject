@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  containers:
+  - name: backend
+    image: t2fp/backend:latest
+    # ports:
+    # - containerPort: 9966
+  - name: frontend
+    image: t2fp/frontend:latest
+    # ports:
+    # - containerPort: 4200
+  - name: nginx
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: nginx-proxy-config
+      mountPath: /etc/nginx/nginx.conf
+      subPath: nginx.conf
+  volumes:
+  - name: nginx-proxy-config
+    configMap:
+      name: app-nginx-conf
