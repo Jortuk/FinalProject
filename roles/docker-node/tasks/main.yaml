@@ -1,0 +1,18 @@
+- name: 'Get Docker gpg Key'
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  tags: Docker-Install
+
+- name: 'Add Packages to Repository'
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename|lower }} stable
+    state: present
+  tags: Docker-Install
+
+- name: 'Install Docker ~ Community Edition'
+  apt: 
+    name: docker-ce
+    state: latest
+    update_cache: yes
+  tags: Docker-Install
