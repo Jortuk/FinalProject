@@ -14,3 +14,8 @@ me: Check swarm status
   shell: hostname
   register: manager_hostname
   tags: swarm
+
+- name: Get the manager node join-token
+  shell: docker swarm join-token --quiet manager
+  register: manager_token
+  tags: swarm
