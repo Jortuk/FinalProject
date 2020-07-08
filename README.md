@@ -46,6 +46,9 @@ This was the Trello Board on the start date. Initially, we debated which tools a
 As you can see, tasks on the board are colour coordinated. This helped us to determine which tasks were related, in addition to implementing MoSCoW prioritisation. It was deemed that 'Back End Development' tasks were 'Must Have', 'Resources' were 'Should Have', and the other tasks as 'Could Have'. Note, such names are for prioritisation purposes only.
 
 ### On-going Changes <a name="ogc"></a>
+![](images/ongoing_trello_board.PNG)
+
+
 
 ## Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
