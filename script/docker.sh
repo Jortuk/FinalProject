@@ -24,4 +24,4 @@ source ~/.bashrc
 #kubectl create -f /var/lib/jenkins/workspace/pet_clinic/K8s/nginx.yml
 #kubectl create -f ./K8s
 #kubectl create -f ./K8s/t2fp-deployment.yml
-docker stack deploy -c docker-compose.yml t2fp
+sudo docker stack deploy -c docker-compose.yml t2fp
