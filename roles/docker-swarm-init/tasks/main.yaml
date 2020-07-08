@@ -1,4 +1,4 @@
-me: Check swarm status
+- name: Check swarm status
   shell: docker node ls
   register: swarm_status
   ignore_errors: true
