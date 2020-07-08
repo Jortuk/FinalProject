@@ -77,3 +77,5 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 8 | 02/07/20 | Secret data stolen | Use environment variables | Sensitive data is not exposed on github and only known within the development team | Low | High | Development stage |
 9 | 02/07/20 | Developers knowledge not sufficient to complete the project | Review materials and research any unknown areas, contact other team members and post issues on Trello | Developers have complete understanding of the technologies used and this is reflected in all aspects of the project | Medium | High | Development stage |
 10 | 02/07/20  | Man in the middle attack | Limit IP access to the machines, make use of VPCs, route tables and security groups | Only authorised access to the machines allowed | Low | High | Development Stage |
+
+![imageofinitialriskmatrix](https://github.com/Jortuk/FinalProject/blob/readme/initialriskmatrix.png)
