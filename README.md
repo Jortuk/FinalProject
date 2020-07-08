@@ -65,3 +65,5 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 # Risk Tracking
 ## Initial Risk Assessment
 
+Date | Risk | Response Strategy | Outcome | Likelihood | Impact | Proximity |
+---  | ---   | ------------------ | ------- | ---------| --------| ---------|
