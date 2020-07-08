@@ -17,3 +17,8 @@
   become: true
   roles:
     - docker-swarm-init
+
+- name: Manager hostname
+  shell: hostname
+  register: manager_hostname
+  tags: swarm
