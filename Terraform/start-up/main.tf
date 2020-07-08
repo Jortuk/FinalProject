@@ -2,23 +2,38 @@
 # @@@@@@ Prerequesits ~ START @@@@@@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-# Having created a t2.micro and pulled down the git repository.
-# run the following command to activate a shell script, installing Terraform and create a keygen.
-# RUN 'cd FinalProject/ && git checkout terraform && cd Terraform/ && sh scripts/initialize.sh'
+# Create a t2.micro Developer Server to host the Repo...
+# * git clone https://github.com/Jortuk/FinalProject
 
-# With Terraform Installed, run the command bellow to start the build process of all AWS Resources needed.
-# RUN 'cd start-up/ && terraform apply -var 'pem_keyname=${pem_keyname}' -var 'pem_keypub=${pem_keypub}'
+# Move into Terraform Directory via the 'terraform' branch to install dependancies...
+# * cd FinalProject/
+# * git branch terraform
+# * cd Terraform/
 
-# The Manager node will download and install terraform and git for us. pulling the repo down, starting the worker node build and aquiring the IP address for both.
-# This process will take a moment to complete.
+# Now within this directory you able to run scripts, creating a Keygen and installing dependancies
+# for Terraform and awscli (aws IAM crodentuals will be requested)...
+# * sh scrips/setup.sh
+#   ~ enter AWS Login Keys
 
-# Run the following command to enter Jenkins and guide setup in tutorial and begin build and launch the application.
+# Witht he dependancies installed and AWS crodentuals accessable by Terraform. The Resources related
+# to the 'Pet Clinic' app can be run (Database 'Username' and 'Password' will be requested)...
+# * cd start-up && terraform init
+# * terraform apply
+#   ~ enter username
+#   ~ enter password
+
+# After the Resources are finished constructing, the Manager node is now able to be accessed using the
+# ssh Key produced within the setup script...
+# * ssh -i "~/.ssh/AWS-Remote" ubuntu@ec2-0-0-0-0.eu-west-1.compute.amazonaws.com
+
+# Aquire Secret Key for Jenkins...
+# * sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# Access Jenkins on the new server using its public IP followed by :8080 and paste in the Secret Key...
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @@@@@@@ Prerequesits ~ END @@@@@@@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-# RUN terraform plan -lock=false -var 'pem_keyname=${pem_keyname}' -var 'pem_keypub=${pem_keypub}'
 
 provider "aws" {
   # version                 = "~> 2.8"
@@ -31,14 +46,8 @@ provider "aws" {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 resource "aws_key_pair" "key_pair" {
-  key_name   = "petClinic"
-  public_key = "/home/ubuntu/.ssh/AWS-Remote.pub"
-}
-
-module "key_pair" {
-  source  = "./KEY"
-  name   = "petClinic"
-  key = "/home/ubuntu/.ssh/AWS-Remote.pub"
+  key_name   = "AWS-Remote"
+  public_key = file("/home/ubuntu/.ssh/AWS-Remote.pub")
 }
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -48,6 +57,7 @@ module "key_pair" {
 module "vpc" {
   source  = "./VPC"
   v4_cidr = "126.156.0.0/16"
+  hostname = true
 
   # @@@ TAGS @@@
   name_tag = "PetClinic-Private-Cloud"
@@ -63,14 +73,31 @@ module "igw" {
   network_tag = "PetClinic"
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 module "subnet" {
   source  = "./SUBNET"
+  availability_zone = data.aws_availability_zones.available.names[0]
   v4_cidr = "126.156.10.0/24"
   pub_ip  = true
   vpc_id  = module.vpc.id
 
   # @@@ TAGS @@@
   name_tag    = "PetClinic_Subnet"
+  network_tag = "PetClinic"
+}
+
+module "subnet_needed" {
+  source  = "./SUBNET"
+  availability_zone = data.aws_availability_zones.available.names[1]
+  v4_cidr = "126.156.20.0/24"
+  pub_ip  = true
+  vpc_id  = module.vpc.id
+
+  # @@@ TAGS @@@
+  name_tag    = "Closed_PetClinic_Subnet"
   network_tag = "PetClinic"
 }
 
@@ -128,22 +155,42 @@ module "iam" {
   iam_desc = "aws_iam_role provision"
 }
 
+module "iam_policy" {
+  source = "./IAM/POLICY"
+  name = "AWSResourcePolicy"
+  desc = "Policy used in conjunction with IAM Role"
+  policy = <<-EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:Describe*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
 module "iam_policy_1" {
     source = "./IAM/POLICY_ATTACH"
-    iam_pol_role = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
-    iam_pol_arn = module.iam.arn
+    iam_pol_role = module.iam.name
+    iam_pol_arn = module.iam_policy.arn
   }
 
 module "iam_policy_2" {
     source = "./IAM/POLICY_ATTACH"
-    iam_pol_role = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-    iam_pol_arn = module.iam.arn
+    iam_pol_role = module.iam.name
+    iam_pol_arn = module.iam_policy.arn
   }
 
 module "iam_policy_3" {
     source = "./IAM/POLICY_ATTACH"
-    iam_pol_role = "arn:aws:iam::aws:policy/IAMFullAccess"
-    iam_pol_arn = module.iam.arn
+    iam_pol_role = module.iam.name
+    iam_pol_arn = module.iam_policy.arn
   }
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -152,15 +199,18 @@ module "iam_policy_3" {
 
 module "mysql_rds" {
   source         = "./RDS"
-  instance_name  = "petclinic"
-  instance_class = "t2.micro"
+  instance_name  = "petclinicdbtesting"
+  instance_class = "db.t2.micro"
   vpc_sg_id      = [module.sg.id]
-  db_subnet_id   = module.subnet.id
+  db_subnet_id1  = module.subnet.id
+  db_subnet_id2  = module.subnet_needed.id
   username       = var.username
   password       = var.password
+  skip_snapshot  = true
+  snapshot_name  = false
 
   # @@@ TAGS @@@
-  name_tag = "My DB subnet group"
+  name_tag = "petclinicdb"
   network_tag = "PetClinic"
 }
 
@@ -176,22 +226,22 @@ module "ec2_manager" {
   instance_count = "1"
   ami_code       = "ami-008320af74136c628" # Ubuntu 16.04
   type_code      = "t2.medium"            # 2 x CPU + 4 x RAM
-  pem_key        = module.key_pair.name
+  pem_key        = "AWS-Remote"
   subnet         = module.subnet.id
   vpc_sg         = [module.sg.id]
   pub_ip         = true
   user_data      = <<-EOF
-  #! /bin/bash
-  sudo apt-get update
-  sudo apt instal awscli
-  sudo apt install default-jre
-  wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
-  sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list
-  sudo apt update
-  sudo apt install jenkins
-  sudo systemctl start jenkins
-  ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
-	EOF
+    #!/bin/bash
+    sudo apt-get update -y
+    sudo apt install awscli -y
+    sudo apt install default-jre -y
+    wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+    sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    sudo apt update  -y
+    sudo apt install jenkins  -y
+    sudo systemctl start jenkins
+    ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
+    EOF
 
   # @@@ TAGS @@@
   name_tag = "Swarm-Manager"

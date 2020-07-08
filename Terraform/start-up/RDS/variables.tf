@@ -34,12 +34,24 @@ variable "password" {
   description = "password for database"
 }
 
-variable "db_subnet_id" {
+variable "db_subnet_id1" {
+  description = "Subnet to be housed within."
+}
+
+variable "db_subnet_id2" {
   description = "Subnet to be housed within."
 }
 
 variable "vpc_sg_id" {
   description = "VPC Security Group."
+}
+
+variable "skip_snapshot" {
+  description = "Final Snapshot."
+}
+
+variable "snapshot_name" {
+  description = "Final Snapshot Name."
 }
 
 variable "name_tag" {

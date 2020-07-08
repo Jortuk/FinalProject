@@ -1,3 +1,7 @@
+variable "availability_zone" {
+  description = "Select Availability Zone."
+}
+
 variable "v4_cidr" {
   description = "This is the v4 Cider Block. This has the first 3 Blocks locked."
 }

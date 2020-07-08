@@ -1,1 +1,0 @@
-# install terraform all the way to the point of assigning worker and manager nodes.
