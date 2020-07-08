@@ -24,3 +24,8 @@
   roles:
     - docker-swarm-init
 
+- name: add workers to the swarm
+  hosts: workers
+  become: true
+  roles:
+    - docker-swarm-add-workers
