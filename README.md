@@ -65,5 +65,6 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 # Risk Tracking
 ## Initial Risk Assessment
 
-Date | Risk | Response Strategy | Outcome | Likelihood | Impact | Proximity |
----  | ---   | ------------------ | ------- | ---------| --------| ---------|
+| Number |Date | Risk | Response Strategy | Outcome | Likelihood | Impact | Proximity |
+| --- |---  | ---   | ------------------ | ------- | ---------| --------| ---------|
+1 | 01/07/20 | Cost exceeds budget | Set up billing alerts and routinely check costs | The project is completed within budget with only necessary costs spent | Low | Low | Once AWS resources are used |
