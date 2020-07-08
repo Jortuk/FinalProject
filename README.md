@@ -25,7 +25,7 @@ Our proposal focused on fulfilling the project brief by using the following arch
 - An AWS EKS Cluster that will run the app
 - Monitoring the project by using AWS services such as CloudWatch, CloudTrail and X-Ray
 
-<b>AN INITIAL ARCHITECTURE DIAGRAM NEEDS TO BE CREATED HERE</b>
+![](images/initial_architecture.PNG)
 
 The above image displays the initial architecture discussed during the first team stand-up. Note, this diagram is not the overall deployment, but the application itself.
 
@@ -93,7 +93,7 @@ For this project we had a budget of £20. Initially we tried to stay within the 
 9 | 02/07/20 | Developers knowledge not sufficient to complete the project | Review materials and research any unknown areas, contact other team members and post issues on Trello | Developers have complete understanding of the technologies used and this is reflected in all aspects of the project | Medium | High | Development stage |
 10 | 02/07/20  | Man in the middle attack | Limit IP access to the machines, make use of VPCs, route tables and security groups | Only authorised access to the machines allowed | Low | High | Development Stage |
 
-![](images/proposalimage.PNG)
+![](images/initialriskmatrix.png)
 
 ### Analysis
 | Number | Analysis | 
