@@ -5,6 +5,12 @@
   roles:
     - docker-node
 
+- name: Install Local System Prerequesits
+  hosts: 34.252.162.215
+  become: true
+  roles:
+    - docker-node
+
 - name: Install Prerequesits for External Worker Nodes
   hosts: localhost
   connection: stack
