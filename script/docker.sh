@@ -14,7 +14,7 @@ chmod +x ./kubectl
 mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
 echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
 kubectl version --short --client
-source .bashrc
+source ~/.bashrc
 #aws eks update-kubeconfig --name example
 
 #kubectl create -f /var/lib/jenkins/workspace/pet_clinic/K8s/backend.yml
