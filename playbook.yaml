@@ -11,3 +11,9 @@
   become: true
   roles:
     - docker-node
+
+- name: initialise docker swarm
+  hosts: localhost
+  become: true
+  roles:
+    - docker-swarm-init

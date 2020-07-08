@@ -1,0 +1,16 @@
+me: Check swarm status
+  shell: docker node ls
+  register: swarm_status
+  ignore_errors: true
+  tags: swarm
+
+- name: Initialise docker swarm
+  shell: docker swarm init
+  when: swarm_status.rc != 0
+  run_once: true
+  tags: swarm
+
+- name: Manager hostname
+  shell: hostname
+  register: manager_hostname
+  tags: swarm
