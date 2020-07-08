@@ -62,7 +62,7 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 
 # Billing 
 | Date | Spend ($) | Resources |
-| --- | ---| --- |
+| --- | ---:| --- |
 01/07/20 | 0.5 | 2 t2.micro instances and RDS |
 02/07/20 | 0.13 | 2 t2.micro instances and RDS | 
 03/07/20 | 0.50 | 4 t2.micro, RDS and t2.small |
@@ -71,6 +71,7 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 06/07/20 | 3.89 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
 07/07/20 | 5.68 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
 08/07/20 | 8.48 |  2 t2.micro, RDS and 2 t2.medium |
+For this project we had a budget of £20. Initially we tried to stay within the free tier usage that AWS offers, however the apps required a higher memory and CPU usage than what the free tier instances offered. We gradually increased the size of the instances which in turn incurred a higher cost. In addition, the EKS also increased the charges, after not being sucessful with Kubernetes we decided not to use this service. 
 # Risk Tracking
 ## Initial Risk Assessment
 
