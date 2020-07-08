@@ -110,3 +110,10 @@ For this project we had a budget of £20. Initially we tried to stay within the 
 8 | Our information was not exposed as we made use of environment variables. |
 9 | We communicated well to help eachother solve any issues we were facing. We also spent a lot of time researching any areas we weren't familiar with and any areas we were stuck on until we came to a solution. |
 10 | We made use of security measures to prevent any cyber attacks. |
+
+# Security 
+## IAM 
+We set up IAM users and gave specific permission policies to the developers depending on their roles in the project. The IAM users had password policies, multi-factor authentication and security credentials in order to keep accounts secure.
+## CloudTrail
+Cloud trail provided a history of each users activity on the AWS resources so it was easy to keep track of activity on the account. We opted out of creating a cloud trail as this could have incurred extra cost and the team had good communication throughout the project. 
+## CloudWatch
