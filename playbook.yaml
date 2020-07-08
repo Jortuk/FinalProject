@@ -6,7 +6,7 @@
     - docker-node
 
 - name: Install Local System Prerequesits
-  hosts: 34.252.162.215
+  hosts: worker
   become: true
   roles:
     - docker-node
