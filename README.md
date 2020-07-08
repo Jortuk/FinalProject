@@ -25,7 +25,7 @@ Our proposal focused on fulfilling the project brief by using the following arch
 - An AWS EKS Cluster that will run the app
 - Monitoring the project by using AWS services such as CloudWatch, CloudTrail and X-Ray
 
-<b>AN INITIAL ARCHITECTURE DIAGRAM NEEDS TO BE CREATED HERE</b>
+![](images/initial_architecture.PNG)
 
 ## Trello Board <a name="trello"></a>
 In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums.
