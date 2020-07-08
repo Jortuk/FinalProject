@@ -5,6 +5,8 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 1. [Brief](#brief)
     - [Project Proposal](#pp)
 2. [Trello Board](#trello)
+    - [Initial Board](#ib)
+    - [On-going Changes](#ogc)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -34,7 +36,16 @@ An EKS Cluster, consisting of a manager node and two worker nodes, sits inside a
 Once the cluster is deployed, the replicas are load-balanced across the worker nodes. NGINX is configured so that vulnerable ports (4200, 9966) are not open to the public, especially those who intend to be malicious. Only port 80 is accessible to the open internet for that reason - this is achieved through an Internet Gateway that is attached to a Route Table associated with the EC2 instances.
 
 ## Trello Board <a name="trello"></a>
-In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums.
+In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums. After our morning scrum, the group then divided into sub-groups to complete certain tasks. At the end of the day, the group help another meeting to see how the sub-groups got on with their tasks to coordinate workflow. What's more, a sprint retrospective was scheduled towards the end of project completion.
+
+### Initial Board <a name="ib"></a>
+![](images/initial_trello_board.PNG)
+
+This was the Trello Board on the start date. Initially, we debated which tools and technologies we should use. Then, making a start on the board itself, as well as creating this collaborative GitHub repository so that each member could version control files and documents.
+
+As you can see, tasks on the board are colour coordinated. This helped us to determine which tasks were related, in addition to implementing MoSCoW prioritisation. It was deemed that 'Back End Development' tasks were 'Must Have', 'Resources' were 'Should Have', and the other tasks as 'Could Have'. Note, such names are for prioritisation purposes only.
+
+### On-going Changes <a name="ogc"></a>
 
 ## Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
