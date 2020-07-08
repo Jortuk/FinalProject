@@ -14,7 +14,7 @@ pipeline {
             
             steps{
                 
-                sh './script/kubectl.sh'
+                sh './script/docker.sh'
             }
         }
     }

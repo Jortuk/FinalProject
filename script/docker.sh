@@ -21,5 +21,6 @@ kubectl version --short --client
 #kubectl create -f /var/lib/jenkins/workspace/pet_clinic/K8s/frontend.yml
 #sleep 20
 #kubectl create -f /var/lib/jenkins/workspace/pet_clinic/K8s/nginx.yml
-kubectl create -f ./K8s
-kubectl create -f ./K8s/t2fp-deployment.yml
+#kubectl create -f ./K8s
+#kubectl create -f ./K8s/t2fp-deployment.yml
+docker stack deploy -c docker-compose.yml t2fp
