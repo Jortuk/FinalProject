@@ -22,7 +22,7 @@ services:
     deploy:
       replicas: 2
   frontend:
-    image: t2fp/frontend:latest
+    image: t2fp/frontend:final
     ports:
     - target: 4200
       published: 4200
