@@ -36,7 +36,7 @@ services:
     deploy:
       replicas: 2
   backend:
-    image: t2fp/backend:latest
+    image: t2fp/backend:final
     ports:
     - target: 9966
       published: 9966
