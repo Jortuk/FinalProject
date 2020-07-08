@@ -25,7 +25,7 @@ Our proposal focused on fulfilling the project brief by using the following arch
 - An AWS EKS Cluster that will run the app
 - Monitoring the project by using AWS services such as CloudWatch, CloudTrail and X-Ray
 
-![](images/initial_architecture.PNG)
+<b>AN INITIAL ARCHITECTURE DIAGRAM NEEDS TO BE CREATED HERE</b>
 
 ## Trello Board <a name="trello"></a>
 In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums.
@@ -61,7 +61,16 @@ Ansible was used to provision the VMs with docker and set up the master and node
 Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts.
 
 # Billing 
-
+| Date | Spend ($) | Resources |
+| --- | ---| --- |
+01/07/20 | 0.5 | 2 t2.micro instances and RDS |
+02/07/20 | 0.13 | 2 t2.micro instances and RDS | 
+03/07/20 | 0.50 | 4 t2.micro, RDS and t2.small |
+04/07/20 | 1.34 | 4 t2.micro, RDS and t2.small |
+05/07/20 | 1.79 | 1 t2.micro, RDS, 2 t2.small and 1 t2.medium |
+06/07/20 | 3.89 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
+07/07/20 | 5.68 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
+08/07/20 | 8.48 |  2 t2.micro, RDS and 2 t2.medium |
 # Risk Tracking
 ## Initial Risk Assessment
 
@@ -78,7 +87,7 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 9 | 02/07/20 | Developers knowledge not sufficient to complete the project | Review materials and research any unknown areas, contact other team members and post issues on Trello | Developers have complete understanding of the technologies used and this is reflected in all aspects of the project | Medium | High | Development stage |
 10 | 02/07/20  | Man in the middle attack | Limit IP access to the machines, make use of VPCs, route tables and security groups | Only authorised access to the machines allowed | Low | High | Development Stage |
 
-![](images/initialriskmatrix.png)
+![](images/proposalimage.PNG)
 
 ### Analysis
 | Number | Analysis | 
