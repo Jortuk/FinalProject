@@ -31,8 +31,14 @@ provider "aws" {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 resource "aws_key_pair" "key_pair" {
-  key_name   = var.pem_keyname
-  public_key = var.pem_keypub
+  key_name   = "petClinic"
+  public_key = "/home/ubuntu/.ssh/AWS-Remote.pub"
+}
+
+module "key_pair" {
+  source  = "./KEY"
+  name   = "petClinic"
+  key = "/home/ubuntu/.ssh/AWS-Remote.pub"
 }
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -113,6 +119,34 @@ module "sg" {
 }
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @@@@@@@ Create IAM role @@@@@@@@@@@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+module "iam" {
+  source = "./IAM"
+  iam_name = "AWSResourcePolicies"
+  iam_desc = "aws_iam_role provision"
+}
+
+module "iam_policy_1" {
+    source = "./IAM/POLICY_ATTACH"
+    iam_pol_role = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
+    iam_pol_arn = module.iam.arn
+  }
+
+module "iam_policy_2" {
+    source = "./IAM/POLICY_ATTACH"
+    iam_pol_role = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+    iam_pol_arn = module.iam.arn
+  }
+
+module "iam_policy_3" {
+    source = "./IAM/POLICY_ATTACH"
+    iam_pol_role = "arn:aws:iam::aws:policy/IAMFullAccess"
+    iam_pol_arn = module.iam.arn
+  }
+
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @@@@@@@ Create SQL Database @@@@@@@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -146,7 +180,7 @@ module "ec2_manager" {
   subnet         = module.subnet.id
   vpc_sg         = [module.sg.id]
   pub_ip         = true
-  user_data      = << EOF
+  user_data      = <<-EOF
   #! /bin/bash
   sudo apt-get update
   sudo apt instal awscli
@@ -156,55 +190,10 @@ module "ec2_manager" {
   sudo apt update
   sudo apt install jenkins
   sudo systemctl start jenkins
+  ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
 	EOF
 
   # @@@ TAGS @@@
   name_tag = "Swarm-Manager"
-  network_tag = "PetClinic"
-}
-
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# @@@@@@@ Create EC2 Instance @@@@@@@
-# @@@@@@@       Workers       @@@@@@@
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-data {
-  get security groups
-  get subnet 
-}
-
-module "ec2_worker1" {
-  source         = "./EC2"
-  instance_count = 1
-  ami_code       = "ami-008320af74136c628" # Ubuntu 16.04
-  type_code      = "t2.small"              # 2 x CPU + 4 x RAM
-  pem_key        = module.key_pair.name
-  subnet         = module.subnet.id
-  vpc_sg         = [module.sg.id]
-  pub_ip         = true
-  user_data      = << EOF
-  #! /bin/bash
-	EOF
-
-  # @@@ TAGS @@@
-  name_tag = "Swarm-Worker-1"
-  network_tag = "PetClinic"
-}
-
-module "ec2_worker2" {
-  source         = "./EC2"
-  instance_count = 1
-  ami_code       = "ami-008320af74136c628" # Ubuntu 16.04
-  type_code      = "t2.small"              # 2 x CPU + 4 x RAM
-  pem_key        = module.key_pair.name
-  subnet         = module.subnet.id
-  vpc_sg         = [module.sg.id]
-  pub_ip         = true
-  user_data      = << EOF
-  #! /bin/bash
-	EOF
-
-  # @@@ TAGS @@@
-  name_tag = "Swarm-Worker-2"
   network_tag = "PetClinic"
 }
