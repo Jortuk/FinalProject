@@ -111,6 +111,8 @@ Ansible was installed onto the manager node through Jenkins, then Ansible would 
 ### Toolchain & Workflow <a name="taw"></a>
 ![](images/toolchain_and_workflow.PNG)
 
+This toolchain and workflow diagram closely reflects what would be used by DevOps engineers in real working environments. Our project includes all the required functionality, through tool integration and feeback, to be passed onto a operations team for continued development.
+
 ### Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
 * RDS MySQL database to persist data entered on the website. 
