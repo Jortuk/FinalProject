@@ -34,7 +34,7 @@
 # * terraform init
 # * terraform apply
 
-Using the IP address of the worker node include it in the area marker {add ip}...
+# Using the IP address of the worker node include it in the area marker {add ip}...
 # * sudo vim .bashrc
 #   ~ export USERNAME="admin"
 #   ~ export PASSWORD="group2password"
