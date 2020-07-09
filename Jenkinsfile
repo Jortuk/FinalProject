@@ -10,6 +10,13 @@ pipeline {
             }
         }
         
+        stage(' Testing Enviornment') {
+            steps{
+                sh 'echo "testing back end"'
+                sh './script/backtest.sh'
+            }
+        }
+
         stage('Setting Swarm'){
             
             steps{
