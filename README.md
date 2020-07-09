@@ -10,6 +10,8 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
     - [Final Board](#fb)
 3. [Risk Assessment](#ra)
     - [Risk Assessment Analysis](#raa)
+4. [Project Architecture](#projectarc)
+    - [Final Application Infrastructure](#fpi)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -93,6 +95,9 @@ The matrix demonstrates that the majority of the risks are located in the yellow
 8 | Our information was not exposed as we made use of environment variables. |
 9 | We communicated well to help eachother solve any issues we were facing. We also spent a lot of time researching any areas we weren't familiar with and any areas we were stuck on until we came to a solution. |
 10 | We made use of security measures to prevent any cyber attacks. |
+
+## Project Architecture <a name="projectarc"></a>
+### Final Application Infrastructure <a name="fpi"></a>
 
 ## Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
