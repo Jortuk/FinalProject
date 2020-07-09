@@ -233,14 +233,44 @@ Cloud trail provided a history of each users activity on the AWS resources so it
 ### Security Groups <a name="securityg"></a>
 In addition to the previous security measures, a security group with specific rules were put in place. A security group, used for all machines, have rules for the following ports: 22, 80, 4200, 9966. Port 22, enabling a machine to be 'SSHed' into, was only accessible via each members IP addresses. Port 4200, used for the front-end, was available via the IP addresses of the machines in the Swarm, closed off to the open internet. Port 9966, the back-end, was again only reachable by the IP addresses of each member. And finally, port 80, used for NGINX, was open to the entire internet. NGINX was configured so that the port for the front-end (4200) was upstreamed and port-forwared to port 80.
 
-## Individual Showcases
-### Jordan and Sophie
-Jordan and I were delegated the task of containerising and running the backend application. We also initialised the database and connected it to the backend application. After testing to see that the database was being populated by the test data and the scripts were successfully executing, we built the DockerFile in order to build the image. After the front and backend images were complete, they were pushed to DockerHub to a shared repository in order to be incorporated with the Kubernetes Cluster. Jordan and I also had intended to deploy the application using Kubernetes. After successfully setting up the system on EKS, we were struggling to export the variables across into the containers and the time and cost of the EKS service was considerably larger than running the Docker containers in the testing environment. Thus, we decided to deploy the application using Docker Swarm instead. After creating a custom NGINX image to proxy onto the frontend container port, we were able to create a compose yaml to deploy the services as a stack. The application successfully deployed using docker swarm and the front and backend applications were able to communicate. 
+# Individual Showcases
+## Jordan and Sophie
+We were delegated the task of containerising and running the backend application. We also initialised the database and connected it to the backend application. After testing to see that the database was being populated by the test data and the scripts were successfully executing, we built the DockerFile in order to build the image. After the front and backend images were complete, they were pushed to DockerHub to a shared repository in order to be incorporated with the Kubernetes Cluster. We also had intended to deploy the application using Kubernetes. After successfully setting up the system on EKS, we were struggling to export the variables across into the containers and the time and cost of the EKS service was considerably larger than running the Docker containers in the testing environment. Thus, we decided to deploy the application using Docker Swarm instead. After creating a custom NGINX image to proxy onto the frontend container port, we were able to create a compose yaml to deploy the services as a stack. The application successfully deployed using docker swarm and the front and backend applications were able to communicate.
 
-# Future Improvements
-## Further Testing
+## Emmanuel
+Aside from Jenkins, some other options available would have been CircleCI and Red Hat however we chose Jenkins not just because it is largely encouraged at QA but because Jenkins is much leaner at allowing for automating processes when adding new code all the way through to acceptance testing. 
+
+This continuous delivery tool allows for a high level of automation. Running Jenkins allowed me to continuously check that the code compiles. The only few disadvantages of Jenkins is its initial setup. For the project, I constructed a Jenkinsfile which details exactly which directory Jenkins can go to execute every code required and build the necessary environment in order to allow the code to run as required. Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts. It was an extremely integral part of enabling our pipeline to successfully run and deploy our application.
+
+The process of using Jenkins for the project pipeline and deployment was not always straight forward, as one of the problems I kept encountering was having Jenkins recognise the IP of the localhost defined within the etc/hosts. Another issue was the fact that, the type of instance we used in order to run Jenkins was not always suitable. We first began on t2.small AWS instance which was far too small to run our application in its size, furthermore, the smaller the size of the instance the longer it took for certain sections of the stages in the Jenkins pipeline to complete successfully. 
+For example, when running on a t2.medium instance, the "Testing environment" stage took 21 minutes to complete and the "Deploying" stage would take another 11 minutes to deploy. Overall, it was often taking over 30 minutes to complete the pipeline and run the application. This would not have been a problem if the pipeline build was always successful, however often halfway through a certain stage, it would fail hence adding to the time it took to troubleshoot and successfully complete the Jenkins stage of our project. I was able to solve this issue by upgrading the instance to t2.large which allowed Jenkins to run much more smoothly and quickly, reducing the pipeline time to under 2 minutes.
+
+## Junaid and Emmanuel
+
+Emmanuel and I were tasked with containerising and running the frontend of the application. This involved the installation of JavaScript runtime environment node.js and the web-application framework angular in order to run the java application successfully. We had a few difficulties initially with installing dependencies due to what seemed to be out-of-date dependencies defined in the package.json file, where the dependencies were listed. As a result, working versions of angular and other dependencies were found and installed which helped resolve the issues that we faced during initial installation of the frontend application. Once we were able to run the application on the internet, we moved onto dockerizing the frontend application by creating a Dockerfile. There were brief issues with the website not showing when attempting to run the application with docker commands. This issue was resolved by mapping the port in the docker command by using the “-p” flag in the “docker run” command. Once this issue was resolved the frontend application was ready for communication with the backend, which was taken care of by Sophie and Jordan.
+
+# Testing
+## Unit Testing 
+We tested the backend of the application which includes 172 tests, using maven. The script to run the tests is below:
+
+* #!/bin/bash
+* cd spring-petclinic-rest
+* sudo apt install maven -y
+* mvn test
+
+All of the tests were successful and the code was included in the Jenkins pipeline to run the tests automatically.
+
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/test_backend.PNG)
+
+## Front End Testing
+Unfortunately after several attempts at automating the frontend testing via Jenkins it was found that doing so was not achievable in the given time frame for the project. In order to do so, Selenium scripts were required but this process would have required a large amount of learning towards the end of the project. This should be considered for future improvements. 
+
+## Future Improvements <a name="fi"></a>
+### Further Testing <a name="ftesting"></a>
 If we had had a longer time period to complete the project testing is a key area that we would like to strengthen. Stress testing would be useful to ensure that the application could handle the increased traffic and requests that would occur during a production environment. Unit testing would also provide us a better and in depth indication of the way in which components of the app and code is able to run sucessfully. In addition, we would conduct testing on the database to ensure that the data is stored, retrieved, updated and deleted correctly in accordance with requests from the website.
-## Enhanced Monitoring
+
+### Enhanced Monitoring <a name="enhanced"></a>
 It would be useful to have a CloudWatch event trigger a lambda function that can manage the EC2 instances, making sure old ones are turned off after a new instance is built through the pipeline. More complex CloudWatch monitoring would have given us access to the instances RAM usage, which we found to be too small when running the applications. To monitor this we used htop, however CloudWatch would've given us easier access to the statistics by including them in our custom dashboard. In addition, XRAY is also a useful feature that would've given us information on how our application was responding to HTTP requests. However we did not have enough time to implement this.
-## Implementing EKS
+
+### Implementing EKS <a name="eks"></a>
 Rather than deploying the application through Docker Swarm, deploying the application with EKS would be a more robust and easily manageable solution. Initially this is what we intended for the project, however using EKS consumed a larger amount of our budget and time, as constructing and destructing the service was complicated and lengthy due to having to delete dependencies before having permission to take the stack and cluster down. In addition, we also struggled with getting the environment variables across to the container which we decided was hindering our progress with the project as a whole. We concluded that Docker Swarm would be a better solution to meet the MVP by the deadline, however if we had more time and a higher budget we would like to include EKS in the deployment of the app.
