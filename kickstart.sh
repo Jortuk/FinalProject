@@ -15,10 +15,12 @@ rm -rf start-up
 cd worker
 
 # Run keygen and create file called "petClinic"
-ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
+ssh-keygen -f /home/ubuntu/.ssh/petClinic -N "" -C "ubuntu"
 
 echo "Please enter AWS Keys..."
 
 aws configure
 
 terraform init
+
+terraform apply

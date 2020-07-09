@@ -267,10 +267,6 @@ module "ec2_manager" {
     sudo apt update  -y
     sudo apt install jenkins  -y
     sudo systemctl start jenkins
-    cd /home/ubuntu/
-    git clone https://github.com/Jortuk/FinalProject
-    cd FinalProject/
-    git checkout terraform
     sudo apt install figlet
     EOF
 
