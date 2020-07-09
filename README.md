@@ -54,7 +54,9 @@ During project progression, several changes were made. This was a result of issu
 - Multiple branches were created on the GitHub repository to enable sub-groups to work on independent features without interference
 - Jenkins was used instead of AWS CodePipeline - this is because Jenkins is a CI/CD server we were all more familiar with 
 - Security groups were configured to better manage permissions and traffic allocation
-- An external RDS instance was created to act as a database for deployment 
+- An external RDS instance was created to act as a database for deployment
+
+### Final Board <a name="fb"></a>
 
 ## Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
