@@ -1,11 +1,11 @@
 #!/bin/bash
 sudo docker rmi $(docker images -aq)
-sudo docker build -t t2fp/frontend:latest ./spring-petclinic-angular
-sudo docker build -t t2fp/backend:latest .
+sudo docker build -t t2fp/frontend:final ./spring-petclinic-angular
+sudo docker build -t t2fp/backend:final .
 
 
-sudo docker push t2fp/frontend:latest
-sudo docker push t2fp/backend:latest
+sudo docker push t2fp/frontend:final
+sudo docker push t2fp/backend:final
 
 
 
