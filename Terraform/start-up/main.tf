@@ -267,13 +267,13 @@ module "ec2_manager" {
     sudo apt update  -y
     sudo apt install jenkins  -y
     sudo systemctl start jenkins
+    sudo su ubuntu
+    ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
     git clone https://github.com/Jortuk/FinalProject
     cd FinalProject/
     git checkout terraform
     cd Terraform/
     sh scripts/terra.sh
-    sudo su ubuntu
-    ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
     EOF
 
   # @@@ TAGS @@@
