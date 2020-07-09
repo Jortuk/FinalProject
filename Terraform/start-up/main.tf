@@ -26,8 +26,35 @@
 # ssh Key produced within the setup script...
 # * ssh -i "~/.ssh/AWS-Remote" ubuntu@ec2-0-0-0-0.eu-west-1.compute.amazonaws.com
 
+# Sign in using the AWS Keys (this is the last time they will be needed durring this build)...
+# * aws configure
+
+# Build Worker Nodes
+# * cd FinalProject/Terraform/worker
+# * terraform init
+# * terraform apply
+
+Using the IP address of the worker node include it in the area marker {add ip}...
+# * sudo vim .bashrc
+#   ~ export USERNAME="admin"
+#   ~ export PASSWORD="group2password"
+#   ~ export URL="petclinicdb.cncg09p34dh0.eu-west-1.rds.amazonaws.com"
+#   ~ export worker={add ip}
+#   ~ export ANSIBLE_HOST_KEY_CHECKING=False
+
 # Aquire Secret Key for Jenkins...
 # * sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# Allow jenkins to run without the need of a password by entering the following command and pasting the
+# following in the file...
+# * sudo visudo
+#   ~ jenkins ALL=(ALL) NOPASSWD: ALL
+
+# Final step before entering Jenkins, The worker node will need to sit in the folloing directory and be
+# called 'worker'...
+# * sudo su jenkins
+# * sudo vim /etc/hosts
+#   ~ Name the worker node 'worker'
 
 # Access Jenkins on the new server using its public IP followed by :8080 and paste in the Secret Key...
 
@@ -241,6 +268,11 @@ module "ec2_manager" {
     sudo apt install jenkins  -y
     sudo systemctl start jenkins
     ssh-keygen -f /home/ubuntu/.ssh/petClinic -N ""
+    git clone https://github.com/Jortuk/FinalProject
+    cd FinalProject/
+    git checkout terraform
+    cd Terraform/
+    sh scripts/terra.sh
     EOF
 
   # @@@ TAGS @@@
