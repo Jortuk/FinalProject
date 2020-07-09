@@ -4,17 +4,32 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 ## Index
 1. [Brief](#brief)
     - [Project Proposal](#pp)
-2. [Trello Board](#trello)
+2. [MoSCoW](#moscow)
+3. [Trello Board](#trello)
     - [Initial Board](#ib)
     - [On-going Changes](#ogc)
     - [Final Board](#fb)
-3. [Risk Assessment](#ra)
+4. [Risk Assessment](#ra)
     - [Risk Assessment Analysis](#raa)
-4. [Project Architecture](#projectarc)
+5. [Project Architecture](#projectarc)
     - [Final Application Infrastructure](#fpi)
     - [Deployment](#deployment)
     - [Toolchain & Workflow](#taw)
     - [Tools, Technologies & Languages Used](#technologies)
+       - [MySQL](#mysql)
+       - [Docker](#docker)
+       - [Terraform](#terraform)
+       - [Ansible](#ansible)
+       - [Jenkins](#jenkins)
+6. [Monitoring](#monitoring)
+    - [CloudWatch](#cw)
+    - [Alarms](#alarms)
+7. [Issues](#issues)
+8. [Billing](#billing)
+9. [Security](#security)
+    - [IAM](#iam)
+    - [CloudTrail](#cloudtrail)
+    - [Security Groups](#securityg)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -43,7 +58,7 @@ An EKS Cluster, consisting of a manager node and two worker nodes, sits inside a
 
 Once the cluster is deployed, the replicas are load-balanced across the worker nodes. NGINX is configured so that vulnerable ports (4200, 9966) are not open to the public, especially those who intend to be malicious. Only port 80 is accessible to the open internet for that reason - this is achieved through an Internet Gateway that is attached to a Route Table associated with the EC2 instances.
 
-## MoSCoW
+## MoSCoW <a name="moscow"></a>
 We set out the requirements for this project in order to plan and estimate our tasks in order to meet the MVP. Firstly we decided that we must have the front and back end of the application deployed, which was the first task we set about completing. In addition, it was also necessary to have a continuous integration/deployment workflow, so we discussed what tools and technologies we would use to fulfill this criteria and added them into our Trello planning. Next we decided that to ensure quality of the application and adhere to best practices, we should include testing of the app. Upon reading the backend documentation, we realised that there was already a database encoded with the app, however we thought it would be better to include an external database but we added this to our 'could have' criteria as it was not necessary to meet the MVP. Finally, the project only required us to deploy the application and we were instructed not to change any of the source code, so we added this to the 'won't have' criteria. 
 
 ## Trello Board <a name="trello"></a>
@@ -160,30 +175,31 @@ This toolchain and workflow diagram closely reflects what would be used by DevOp
 * CSS
 * HTML
 
-## MySQL <a name="mysql"></a>
+### MySQL <a name="mysql"></a>
 A RDS MySQL database was set up on AWS in order to persist data from the website. This required the application-mysql.properties file to be modified so that the first three lines are uncommented and to include the endpoint for the database, username and password. In order to protect this sensitive information we entered the export command with the values for these varibles in the .bashrc and then used variable substitution in the file. 
 
-## Docker <a name="docker"></a>
+### Docker <a name="docker"></a>
 The front and back end applications are containerised using docker utilising apline images to reduce the memory usage. Initially it was intended to use kubernetes to deploy the application however after encountering issues we decided to use docker swarm instead. The front end application communicates with the back end through the instruction of the environment.ts, pulling the database information to display on the site and also enabling CRUD functionality. We utilised DockerHub's team repository functionality so that we could all have access from our personal accounts in order to push and retrieve images. This function is free for teams of up to 3 people and $9 a month for teams of any higher number. We decided to keep the cost down by enabling the only docker developers access to the repository. 
 
-## Terraform <a name="terraform"></a>
+### Terraform <a name="terraform"></a>
 Terraform was used to provision the AWS resources; EC2 instances including master and swarm worker nodes, an internet gateway, the RDS instance, route table, security groups, subnets and VPC.
 
-## Ansible <a name="ansible"></a>
+### Ansible <a name="ansible"></a>
 Ansible was used to provision the VMs with docker and set up the master and nodes as part of a swarm. 
 
-## Jenkins <a name="jenkins"></a>
+### Jenkins <a name="jenkins"></a>
 Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts.
 
-## CloudWatch
+## Monitoring <a name="monitoring"></a>
+### CloudWatch <a name="cw"></a>
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/petclinicdashboard.png)
 By creating a custom dashboard, we were able to track the PetClinic's resources. We configured a dashboard that displays the current statistic at the time of access. We decided to monitor the CPU usage and the available memory of the databases. These statistics helped us to troubleshoot when we were having issues running software on the VMs and informed our decision to upgrade the CPUs.
 
-### Alarms
+### Alarms <a name="alarms"></a>
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/alarms.png)
 We set up alarms to trigger when CPU usage went above 80. We also set up an alarm to notify the team when the memory availability of the databases was running low, as we thought this would be useful should the website be deployed in production. 
 
-# Issues
+## Issues <a name="issues"></a>
 * Database not initialising. To solve this we had to add a line of code into the application-mysql.properties file which explicitly called for the data to be initialised upon start up. This sucessfully executed the scripts in the file which populates the database with tables and inputs some initial information.
 * Dependencies not installing when creating Docker images. A few of the dependencies were not compatible with the OS system we were using so these needed to be altered in order for the Docker build to be successful. 
 * VMs crashing when using Kubernetes. After monitoring the VM CPU uand RAM usage, we decided to upgrade the instances. After still having problems with this we decided to use EKS.
@@ -192,7 +208,7 @@ We set up alarms to trigger when CPU usage went above 80. We also set up an alar
 * Environment variables not exporting into EKS containers. After using techniques such as ConfigMaps, environment variables and secrets to no avail we decided to migrate onto Docker Swarm.
 * Ansible unable to SSH into workers. Config files in the wrong location.
 
-# Billing 
+## Billing <a name="billing"></a>
 | Date | Spend ($) | Resources |
 | --- | ---:| --- |
 01/07/20 | 0.5 | 2 t2.micro instances and RDS |
@@ -207,14 +223,18 @@ We set up alarms to trigger when CPU usage went above 80. We also set up an alar
 
 For this project we had a budget of £20. Initially we tried to stay within the free tier usage that AWS offers, however the apps required a higher memory and CPU usage than what the free tier instances offered. We gradually increased the size of the instances which in turn incurred a higher cost. In addition, the EKS also increased the charges, after not being sucessful with Kubernetes we decided not to use this service. In order to track our spends, we set up a billing alert to notify the account owner's email when 80% of the budget was reached.
 
-# Security 
-## IAM 
+## Security <a name="security"></a>
+### IAM <a name="iam"></a>
 We set up IAM users and gave specific permission policies to the developers depending on their roles in the project. The IAM users had password policies, multi-factor authentication and security credentials in order to keep accounts secure.
-## CloudTrail
-Cloud trail provided a history of each users activity on the AWS resources so it was easy to keep track of activity on the account. We opted out of creating a cloud trail as this could have incurred extra cost and the team had good communication throughout the project. 
 
-# Individual Showcases
-## Jordan and Sophie
+### CloudTrail <a name="cloudtrail"></a>
+Cloud trail provided a history of each users activity on the AWS resources so it was easy to keep track of activity on the account. We opted out of creating a cloud trail as this could have incurred extra cost and the team had good communication throughout the project.
+
+### Security Groups <a name="securityg"></a>
+In addition to the previous security measures, a security group with specific rules were put in place. A security group, used for all machines, have rules for the following ports: 22, 80, 4200, 9966. Port 22, enabling a machine to be 'SSHed' into, was only accessible via each members IP addresses. Port 4200, used for the front-end, was available via the IP addresses of the machines in the Swarm, closed off to the open internet. Port 9966, the back-end, was again only reachable by the IP addresses of each member. And finally, port 80, used for NGINX, was open to the entire internet. NGINX was configured so that the port for the front-end (4200) was upstreamed and port-forwared to port 80.
+
+## Individual Showcases
+### Jordan and Sophie
 Jordan and I were delegated the task of containerising and running the backend application. We also initialised the database and connected it to the backend application. After testing to see that the database was being populated by the test data and the scripts were successfully executing, we built the DockerFile in order to build the image. After the front and backend images were complete, they were pushed to DockerHub to a shared repository in order to be incorporated with the Kubernetes Cluster. Jordan and I also had intended to deploy the application using Kubernetes. After successfully setting up the system on EKS, we were struggling to export the variables across into the containers and the time and cost of the EKS service was considerably larger than running the Docker containers in the testing environment. Thus, we decided to deploy the application using Docker Swarm instead. After creating a custom NGINX image to proxy onto the frontend container port, we were able to create a compose yaml to deploy the services as a stack. The application successfully deployed using docker swarm and the front and backend applications were able to communicate. 
 
 # Future Improvements
