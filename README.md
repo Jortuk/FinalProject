@@ -130,13 +130,27 @@ Ansible was installed onto the manager node through Jenkins, then Ansible would 
 This toolchain and workflow diagram closely reflects what would be used by DevOps engineers in real working environments. Our project includes all the required functionality, through tool integration and feeback, to be passed onto a operations team for continued development.
 
 ### Tools, Technologies & Languages Used <a name="technologies"></a>
-* The Spring Pet Clinic application is a spring boot application we ran using maven. 
-* RDS MySQL database to persist data entered on the website. 
-* Ansible to provision VMs.
-* Jenkins to automate the building process.
-* Docker to containerise the application and docker swarm to deploy the application.
-* Terraform to provision AWS resources.
-* Trello to track and manage the project.
+* The Spring Pet Clinic application is a spring boot application we ran using maven 
+* RDS MySQL database to persist data entered on the website 
+* Ansible to provision VMs
+* Jenkins to automate the building process
+* DockerFiles to Dockerise the front and back end applications
+* DockerHub to version control the images
+* Docker Swarm to deploy the application
+* Terraform to provision AWS resources
+* Trello to track and manage the project
+* Microsoft Teams to communicate throughout the project
+* GitHub to version control the code
+* A webhook to trigger automated builds from updates to the source code
+* Scripts to carry out automated commands
+* IAM users to provide access to the AWS resources
+* CloudWatch to monitor AWS resource activity, including CloudWatch Metrics and Alarms
+* CloudTrail to monitor IAM user activity
+* SNS topic
+* AWS billing alerts
+* YAML files
+* Linux
+* Java
 
 ## MySQL <a name="mysql"></a>
 A RDS MySQL database was set up on AWS in order to persist data from the website. This required the application-mysql.properties file to be modified so that the first three lines are uncommented and to include the endpoint for the database, username and password. In order to protect this sensitive information we entered the export command with the values for these varibles in the .bashrc and then used variable substitution in the file. 
@@ -145,7 +159,7 @@ A RDS MySQL database was set up on AWS in order to persist data from the website
 The front and back end applications are containerised using docker utilising apline images to reduce the memory usage. Initially it was intended to use kubernetes to deploy the application however after encountering issues we decided to use docker swarm instead. The front end application communicates with the back end through the instruction of the environment.ts, pulling the database information to display on the site and also enabling CRUD functionality. We utilised DockerHub's team repository functionality so that we could all have access from our personal accounts in order to push and retrieve images. This function is free for teams of up to 3 people and $9 a month for teams of any higher number. We decided to keep the cost down by enabling the only docker developers access to the repository. 
 
 ## Terraform <a name="terraform"></a>
-Terraform was used to provision the AWS resources; EC2 instances including master and swarm worker nodes, an internet gateway, the RDS instance, route table, security groups, subnets and VPC. 
+Terraform was used to provision the AWS resources; EC2 instances including master and swarm worker nodes, an internet gateway, the RDS instance, route table, security groups, subnets and VPC.
 
 ## Ansible <a name="ansible"></a>
 Ansible was used to provision the VMs with docker and set up the master and nodes as part of a swarm. 
@@ -159,6 +173,15 @@ By creating a custom dashboard, we were able to track the PetClinic's resources.
 ### Alarms
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/alarms.png)
 We set up alarms to trigger when CPU usage went above 80. We also set up an alarm to notify the team when the memory availability of the databases was running low, as we thought this would be useful should the website be deployed in production. 
+
+# Issues
+* Database not initialising. To solve this we had to add a line of code into the application-mysql.properties file which explicitly called for the data to be initialised upon start up. This sucessfully executed the scripts in the file which populates the database with tables and inputs some initial information.
+* Dependencies not installing when creating Docker images. A few of the dependencies were not compatible with the OS system we were using so these needed to be altered in order for the Docker build to be successful. 
+* VMs crashing when using Kubernetes. After monitoring the VM CPU uand RAM usage, we decided to upgrade the instances. After still having problems with this we decided to use EKS.
+* EKS turning on instances after we turned them off. The cluster needed to be stopped at the end of the working day to prevent unecessary increases in billing. Individual resources would be automatically redeployed if the cluster was still running.
+* EKS not deleting. Each individual resource needed to be deleted manually in sequential order before the cluster could be deleted. This was improved when terraform was incorporated and terraform destroy could be executed to delete the EKS.
+* Environment variables not exporting into EKS containers. After using techniques such as ConfigMaps, environment variables and secrets to no avail we decided to migrate onto Docker Swarm.
+* Ansible unable to SSH into workers. Config files in the wrong location.
 
 # Billing 
 | Date | Spend ($) | Resources |
