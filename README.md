@@ -99,6 +99,12 @@ The matrix demonstrates that the majority of the risks are located in the yellow
 ## Project Architecture <a name="projectarc"></a>
 ### Final Application Infrastructure <a name="fpi"></a>
 
+### Deployment <a name="deployment"></a>
+![](images/pipeline.PNG)
+
+### Toolchain & Workflow <a name="taw"></a>
+![](images/toolchain_and_workflow.PNG)
+
 ## Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
 * RDS MySQL database to persist data entered on the website. 
@@ -107,10 +113,6 @@ The matrix demonstrates that the majority of the risks are located in the yellow
 * Docker to containerise the application and docker swarm to deploy the application.
 * Terraform to provision AWS resources.
 * Trello to track and manage the project.
-
-# Deployment
-
-## CI Pipeline <a name="CI Pipeline"></a>
 
 ## MySQL <a name="mysql"></a>
 A RDS MySQL database was set up on AWS in order to persist data from the website. This required the application-mysql.properties file to be modified so that the first three lines are uncommented and to include the endpoint for the database, username and password. In order to protect this sensitive information we entered the export command with the values for these varibles in the .bashrc and then used variable substitution in the file. 
