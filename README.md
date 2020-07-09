@@ -30,6 +30,20 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
     - [IAM](#iam)
     - [CloudTrail](#cloudtrail)
     - [Security Groups](#securityg)
+10. [Individual Showcases](#individual)
+    - [Jordan and Sophie: Docker Swarm](#jos)
+    - [Emmanuel: Jenkins](#emman)
+    - [Junaid and Emmanuel: Front-end](#jae)
+11. [Testing](#testing)
+    - [Unit Testing](#unit)
+    - [Front End Testing](#front)
+12. [Future Improvements](#fi)
+    - [Further Testing](#ftesting)
+    - [Enhanced Monitoring](#enhanced)
+    - [Implementing EKS](#eks)
+13. [Installation Guide](#insg)
+14. [Authors](#authors)
+15. [Acknowledgements](#ack)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -188,7 +202,11 @@ Terraform was used to provision the AWS resources; EC2 instances including maste
 Ansible was used to provision the VMs with docker and set up the master and nodes as part of a swarm. 
 
 ### Jenkins <a name="jenkins"></a>
-Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts.
+Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts. Jenkins in definition is an open source automation tool which was written in java for the purpose of fulfilling business continuous integration problem. It allows the users to build and test the software projects continuously hence making it easier for developers to integrate changes to the project and it also allows for users such as myself to obtain a fresh build.
+
+![2020-07-09](https://user-images.githubusercontent.com/64255340/87095941-a7a8bf80-c239-11ea-895b-1f0c604f0671.png
+
+There was five stages which the deployment pipeline had to go through. The first being the Declarative Checkout SCM. This sections essentially checks and structures the method in which the build of the pipeline would occur. The stage was the Installation of the environment. This stage accessed the installation.sh and downloaded the environment required to begin the deployment of the application. The third stage was the testing environment which was the test written to check the back-end of the application. It was used automate the testing within Jenkins. The fourth stage was setting up swarm which required installing docker using ansible within the nodes and the final stage was deploying stage which pulled down the images from DockerHub and deployed the application, it then deployed the whole application using Nginx as the reverse proxy.
 
 ## Monitoring <a name="monitoring"></a>
 ### CloudWatch <a name="cw"></a>
@@ -233,11 +251,11 @@ Cloud trail provided a history of each users activity on the AWS resources so it
 ### Security Groups <a name="securityg"></a>
 In addition to the previous security measures, a security group with specific rules were put in place. A security group, used for all machines, have rules for the following ports: 22, 80, 4200, 9966. Port 22, enabling a machine to be 'SSHed' into, was only accessible via each members IP addresses. Port 4200, used for the front-end, was available via the IP addresses of the machines in the Swarm, closed off to the open internet. Port 9966, the back-end, was again only reachable by the IP addresses of each member. And finally, port 80, used for NGINX, was open to the entire internet. NGINX was configured so that the port for the front-end (4200) was upstreamed and port-forwared to port 80.
 
-# Individual Showcases
-## Jordan and Sophie
+## Individual Showcases <a name="individual"></a>
+### Jordan and Sophie: Docker Swarm <a name="jos"></a>
 We were delegated the task of containerising and running the backend application. We also initialised the database and connected it to the backend application. After testing to see that the database was being populated by the test data and the scripts were successfully executing, we built the DockerFile in order to build the image. After the front and backend images were complete, they were pushed to DockerHub to a shared repository in order to be incorporated with the Kubernetes Cluster. We also had intended to deploy the application using Kubernetes. After successfully setting up the system on EKS, we were struggling to export the variables across into the containers and the time and cost of the EKS service was considerably larger than running the Docker containers in the testing environment. Thus, we decided to deploy the application using Docker Swarm instead. After creating a custom NGINX image to proxy onto the frontend container port, we were able to create a compose yaml to deploy the services as a stack. The application successfully deployed using docker swarm and the front and backend applications were able to communicate.
 
-## Emmanuel
+### Emmanuel: Jenkins <a name="emman"></a>
 Aside from Jenkins, some other options available would have been CircleCI and Red Hat however we chose Jenkins not just because it is largely encouraged at QA but because Jenkins is much leaner at allowing for automating processes when adding new code all the way through to acceptance testing. 
 
 This continuous delivery tool allows for a high level of automation. Running Jenkins allowed me to continuously check that the code compiles. The only few disadvantages of Jenkins is its initial setup. For the project, I constructed a Jenkinsfile which details exactly which directory Jenkins can go to execute every code required and build the necessary environment in order to allow the code to run as required. Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts. It was an extremely integral part of enabling our pipeline to successfully run and deploy our application.
@@ -245,12 +263,11 @@ This continuous delivery tool allows for a high level of automation. Running Jen
 The process of using Jenkins for the project pipeline and deployment was not always straight forward, as one of the problems I kept encountering was having Jenkins recognise the IP of the localhost defined within the etc/hosts. Another issue was the fact that, the type of instance we used in order to run Jenkins was not always suitable. We first began on t2.small AWS instance which was far too small to run our application in its size, furthermore, the smaller the size of the instance the longer it took for certain sections of the stages in the Jenkins pipeline to complete successfully. 
 For example, when running on a t2.medium instance, the "Testing environment" stage took 21 minutes to complete and the "Deploying" stage would take another 11 minutes to deploy. Overall, it was often taking over 30 minutes to complete the pipeline and run the application. This would not have been a problem if the pipeline build was always successful, however often halfway through a certain stage, it would fail hence adding to the time it took to troubleshoot and successfully complete the Jenkins stage of our project. I was able to solve this issue by upgrading the instance to t2.large which allowed Jenkins to run much more smoothly and quickly, reducing the pipeline time to under 2 minutes.
 
-## Junaid and Emmanuel
-
+### Junaid and Emmanuel: Front-end <a name="jae"></a>
 Emmanuel and I were tasked with containerising and running the frontend of the application. This involved the installation of JavaScript runtime environment node.js and the web-application framework angular in order to run the java application successfully. We had a few difficulties initially with installing dependencies due to what seemed to be out-of-date dependencies defined in the package.json file, where the dependencies were listed. As a result, working versions of angular and other dependencies were found and installed which helped resolve the issues that we faced during initial installation of the frontend application. Once we were able to run the application on the internet, we moved onto dockerizing the frontend application by creating a Dockerfile. There were brief issues with the website not showing when attempting to run the application with docker commands. This issue was resolved by mapping the port in the docker command by using the “-p” flag in the “docker run” command. Once this issue was resolved the frontend application was ready for communication with the backend, which was taken care of by Sophie and Jordan.
 
-# Testing
-## Unit Testing 
+## Testing <a name="testing"></a>
+### Unit Testing <a name="unit"></a>
 We tested the backend of the application which includes 172 tests, using maven. The script to run the tests is below:
 
 * #!/bin/bash
@@ -262,7 +279,7 @@ All of the tests were successful and the code was included in the Jenkins pipeli
 
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/test_backend.PNG)
 
-## Front End Testing
+### Front End Testing <a name="front"></a>
 Unfortunately after several attempts at automating the frontend testing via Jenkins it was found that doing so was not achievable in the given time frame for the project. In order to do so, Selenium scripts were required but this process would have required a large amount of learning towards the end of the project. This should be considered for future improvements. 
 
 ## Future Improvements <a name="fi"></a>
@@ -274,3 +291,12 @@ It would be useful to have a CloudWatch event trigger a lambda function that can
 
 ### Implementing EKS <a name="eks"></a>
 Rather than deploying the application through Docker Swarm, deploying the application with EKS would be a more robust and easily manageable solution. Initially this is what we intended for the project, however using EKS consumed a larger amount of our budget and time, as constructing and destructing the service was complicated and lengthy due to having to delete dependencies before having permission to take the stack and cluster down. In addition, we also struggled with getting the environment variables across to the container which we decided was hindering our progress with the project as a whole. We concluded that Docker Swarm would be a better solution to meet the MVP by the deadline, however if we had more time and a higher budget we would like to include EKS in the deployment of the app.
+
+## Installation Guide <a name="insg"></a>
+To install and deploy the application yourself, refer to the following video:
+
+## Authors <a name="authors"></a>
+Jordan Taylor, Sophie Cosgrove, Emmanuel Agyapong, Sean McCann, Junaid Sidat
+
+## Acknowledgements <a name="ack"></a>
+The QA Academy trainers for their enjoyable and detailed training sessions, as well as my fellow QA Academy Trainees.
