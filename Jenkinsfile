@@ -13,7 +13,7 @@ pipeline {
         stage('Setting Swarm'){
             
             steps{
-                
+                sh 'chmod +x ./script/*'
                 sh 'bash ./script/ansible.sh'
             }
         }
