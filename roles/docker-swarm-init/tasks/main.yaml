@@ -20,15 +20,15 @@
   register: manager_token
   tags: swarm
 
-- name: Get worker node join-token
-  shell: docker swarm join-token --quiet worker
-  register: worker_token
-  tags: swarm
+# - name: Get worker node join-token
+#   shell: docker swarm join-token --quiet worker
+#   register: worker_token
+#   tags: swarm
 
-- name: Get worker token
-  add_host:
-    name: "token"
-    value: "{{ worker_token.stdout }}"
+# - name: Get worker token
+#   add_host:
+#     name: "token"
+#     value: "{{ worker_token.stdout }}"
 
 - name: Get manager hostname
   add_host:
