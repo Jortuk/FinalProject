@@ -80,6 +80,7 @@ During project progression, several changes were made. This was a result of issu
 - An external RDS instance was created to act as a database for deployment
 
 ### Final Board <a name="fb"></a>
+![](images/final_board.PNG)
 
 ## Risk Assessment <a name="ra"></a>
 
@@ -116,6 +117,7 @@ The matrix demonstrates that the majority of the risks are located in the yellow
 
 ## Project Architecture <a name="projectarc"></a>
 ### Final Application Infrastructure <a name="fpi"></a>
+![](images/final_architecture.PNG)
 
 ### Deployment <a name="deployment"></a>
 ![](images/pipeline.PNG)
