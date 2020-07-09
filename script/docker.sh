@@ -26,4 +26,4 @@ source ~/.bashrc
 #kubectl create -f ./K8s/t2fp-deployment.yml
 
 
-sudo env username="${username}" env password="${password}" env url="${url}" docker stack deploy -c docker-compose.yml t2fp
+sudo env USERNAME="${USERNAME}" env PASSWORD="${PASSWORD}" env URL="${URL}" docker stack deploy -c docker-compose.yml t2fp
