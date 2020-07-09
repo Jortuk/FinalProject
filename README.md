@@ -146,7 +146,7 @@ By creating a custom dashboard, we were able to track the PetClinic's resources.
 08/07/20 | 8.48 |  2 t2.micro, RDS and 2 t2.medium |
 09/07/20 | 9.91 | 2 t2.medium, 2 t2.micro, 2 t2.small RDS |
 
-For this project we had a budget of £20. Initially we tried to stay within the free tier usage that AWS offers, however the apps required a higher memory and CPU usage than what the free tier instances offered. We gradually increased the size of the instances which in turn incurred a higher cost. In addition, the EKS also increased the charges, after not being sucessful with Kubernetes we decided not to use this service. 
+For this project we had a budget of £20. Initially we tried to stay within the free tier usage that AWS offers, however the apps required a higher memory and CPU usage than what the free tier instances offered. We gradually increased the size of the instances which in turn incurred a higher cost. In addition, the EKS also increased the charges, after not being sucessful with Kubernetes we decided not to use this service. In order to track our spends, we set up a billing alert to notify the account owner's email when 80% of the budget was reached.
 
 # Security 
 ## IAM 
