@@ -81,7 +81,7 @@ Ansible was used to provision the VMs with docker and set up the master and node
 Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts.
 
 ## CloudWatch
-
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/petclinicdashboard.png)
 # Billing 
 | Date | Spend ($) | Resources |
 | --- | ---:| --- |
