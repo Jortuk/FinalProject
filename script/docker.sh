@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo docker system prune
 sudo docker rmi $(docker images -aq)
 sudo docker build -t t2fp/frontend:final ./spring-petclinic-angular
 sudo docker build -t t2fp/backend:final .
@@ -6,7 +7,6 @@ sudo docker build -t t2fp/backend:final .
 
 sudo docker push t2fp/frontend:final
 sudo docker push t2fp/backend:final
-
 
 
 #curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/kubectl
