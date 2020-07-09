@@ -12,6 +12,8 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
     - [Risk Assessment Analysis](#raa)
 4. [Project Architecture](#projectarc)
     - [Final Application Infrastructure](#fpi)
+    - [Deployment](#deployment)
+    - [Toolchain & Workflow](#taw)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
