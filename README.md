@@ -78,6 +78,8 @@ During project progression, several changes were made. This was a result of issu
 
 ![](images/initialriskmatrix.png)
 
+The matrix demonstrates that the majority of the risks are located in the yellow band. Overall, this shows a medium level of combined risk. This required measures to reduce the potential effects. Additionally, risks held within the red band required more levels of precaution and constant monitoring.
+
 ### Risk Assessment Analysis <a name="raa"></a>
 | Number | Analysis | 
 |--- | ---|
@@ -125,6 +127,7 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 ## CloudWatch
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/petclinicdashboard.png)
 By creating a custom dashboard, we were able to track the PetClinic's resources. We configured a dashboard that displays the current statistic at the time of access. We decided to monitor the CPU usage and the available memory of the databases. These statistics helped us to troubleshoot when we were having issues running software on the VMs and informed our decision to upgrade the CPUs. 
+
 # Billing 
 | Date | Spend ($) | Resources |
 | --- | ---:| --- |
