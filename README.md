@@ -80,6 +80,8 @@ Ansible was used to provision the VMs with docker and set up the master and node
 ## Jenkins <a name="jenkins"></a>
 Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts.
 
+## CloudWatch
+
 # Billing 
 | Date | Spend ($) | Resources |
 | --- | ---:| --- |
@@ -90,8 +92,8 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 05/07/20 | 1.79 | 1 t2.micro, RDS, 2 t2.small and 1 t2.medium |
 06/07/20 | 3.89 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
 07/07/20 | 5.68 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
-08/07/20 | 8.48 |  2 t2.micro, RDS and 2 t2.medium ||
-
+08/07/20 | 8.48 |  2 t2.micro, RDS and 2 t2.medium |
+09/07/20 | 9.91 | 2 t2.medium, 2 t2.micro, 2 t2.small RDS ||
 For this project we had a budget of £20. Initially we tried to stay within the free tier usage that AWS offers, however the apps required a higher memory and CPU usage than what the free tier instances offered. We gradually increased the size of the instances which in turn incurred a higher cost. In addition, the EKS also increased the charges, after not being sucessful with Kubernetes we decided not to use this service. 
 # Risk Tracking
 ## Initial Risk Assessment
@@ -130,4 +132,4 @@ For this project we had a budget of £20. Initially we tried to stay within the 
 We set up IAM users and gave specific permission policies to the developers depending on their roles in the project. The IAM users had password policies, multi-factor authentication and security credentials in order to keep accounts secure.
 ## CloudTrail
 Cloud trail provided a history of each users activity on the AWS resources so it was easy to keep track of activity on the account. We opted out of creating a cloud trail as this could have incurred extra cost and the team had good communication throughout the project. 
-## CloudWatch
+
