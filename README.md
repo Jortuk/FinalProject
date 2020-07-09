@@ -132,6 +132,9 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 ## CloudWatch
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/petclinicdashboard.png)
 By creating a custom dashboard, we were able to track the PetClinic's resources. We configured a dashboard that displays the current statistic at the time of access. We decided to monitor the CPU usage and the available memory of the databases. These statistics helped us to troubleshoot when we were having issues running software on the VMs and informed our decision to upgrade the CPUs. 
+### Alarms
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/alarms.png)
+We set up alarms to trigger when CPU usage went above 80. We also set up an alarm to notify the team when the memory availability of the databases was running low, as we thought this would be useful should the website be deployed in production. 
 
 # Billing 
 | Date | Spend ($) | Resources |
