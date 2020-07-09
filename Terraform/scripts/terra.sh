@@ -1,5 +1,7 @@
 #!/bin/bash
 
+figlet Terra-Plug
+
 sudo apt update && sudo apt upgrade -y
 
 # Aquire the terraform tools.

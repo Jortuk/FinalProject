@@ -1,16 +1,12 @@
 #!/bin/bash
 
-sudo apt install figlet
-
-figlet AWS-Remote
-
 # get a key to apply to new machine
-sh scripts/keygen.sh
+sh Terraform/scripts/keygen.sh
 
 echo ""
 
 # install requirments for Terraform
-sh scripts/terra.sh
+sh Terraform/scripts/terra.sh
 
 echo ""
 

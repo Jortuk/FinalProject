@@ -1,6 +1,6 @@
 #!/bin/bash
 
-figlet Group2-KickStart
+figlet G2-KickStart
 
 echo "Terraform Install"
 
