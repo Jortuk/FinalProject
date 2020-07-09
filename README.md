@@ -14,6 +14,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
     - [Final Application Infrastructure](#fpi)
     - [Deployment](#deployment)
     - [Toolchain & Workflow](#taw)
+    - [Tools, Technologies & Languages Used](#technologies)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -113,7 +114,7 @@ Ansible was installed onto the manager node through Jenkins, then Ansible would 
 
 This toolchain and workflow diagram closely reflects what would be used by DevOps engineers in real working environments. Our project includes all the required functionality, through tool integration and feeback, to be passed onto a operations team for continued development.
 
-### Technologies <a name="technologies"></a>
+### Tools, Technologies & Languages Used <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
 * RDS MySQL database to persist data entered on the website. 
 * Ansible to provision VMs.
