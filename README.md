@@ -151,6 +151,8 @@ This toolchain and workflow diagram closely reflects what would be used by DevOp
 * YAML files
 * Linux
 * Java
+* CSS
+* HTML
 
 ## MySQL <a name="mysql"></a>
 A RDS MySQL database was set up on AWS in order to persist data from the website. This required the application-mysql.properties file to be modified so that the first three lines are uncommented and to include the endpoint for the database, username and password. In order to protect this sensitive information we entered the export command with the values for these varibles in the .bashrc and then used variable substitution in the file. 
