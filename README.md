@@ -46,12 +46,24 @@ Once the cluster is deployed, the replicas are load-balanced across the worker n
 ## Trello Board <a name="trello"></a>
 In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums. After our morning scrum, the group then divided into sub-groups to complete certain tasks. At the end of the day, the group help another meeting to see how the sub-groups got on with their tasks to coordinate workflow. What's more, a sprint retrospective was scheduled towards the end of project completion.
 
+
 ### Initial Board <a name="ib"></a>
 ![](images/initial_trello_board.PNG)
 
-This was the Trello Board on the start date. Initially, we debated which tools and technologies we should use. Then, making a start on the board itself, as well as creating this collaborative GitHub repository so that each member could version control files and documents.
+This was the Trello Board after our first scrum meeting. Initially, we debated which tools and technologies we should use and plotted initial tasks on the board. Then we made our collaborative GitHub, DockerHub and IAM user accounts. We were each assigned to tasks and then this was plotted on the different trello cards. The tasks on the board were colour coordinated to help us determine which tasks were related and quickly communicate information about the tasks. 
 
-As you can see, tasks on the board are colour coordinated. This helped us to determine which tasks were related, in addition to implementing MoSCoW prioritisation. It was deemed that 'Back End Development' tasks were 'Must Have', 'Resources' were 'Should Have', and the other tasks as 'Could Have'. Note, such names are for prioritisation purposes only.
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/meetingoutline.png)
+
+After meetings we would summarise the main points of the meetings and record any important issues or tasks that need to be completed. It was effective to record our activities in this way to effectively plan and manage our time and also gave us a history of events so we could evaluate our current progress and how much time it may take us to complete current or future tasks.
+
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/checklists.png)
+
+Another feature of Trello we utilised was the checklist. This acted as a product backlog where we could view our tasks quantified and keep on track with what tasks need to be completed. Again it was useful to estimate how long future tasks might take us and also give us an indication of any areas that might be taking longer than expected. 
+
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/trelloissuetracking.png)
+
+Underneath each card we utilised the comment feature to record any issues that we were facing. Here we could include possible suggestions that we had discussed in order to solve the issue in order to form a plan of action if the issue persisted. 
+
 
 ### On-going Changes <a name="ogc"></a>
 ![](images/ongoing_trello_board.PNG)
