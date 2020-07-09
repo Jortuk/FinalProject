@@ -1,0 +1,31 @@
+
+- name: Install Local System Prerequesits
+  hosts: localhost
+  become: true
+  roles:
+    - docker-node
+
+# - name: Install Local System Prerequesits
+#   hosts: worker
+#   become: true
+#   roles:
+#     - docker-node
+
+# - name: Install Prerequesits for External Worker Nodes
+#   hosts: localhost
+#   connection: stack
+#   become: true
+#   roles:
+#     - docker-node
+
+- name: initialise docker swarm
+  hosts: localhost
+  become: true
+  roles:
+    - docker-swarm-init
+
+# - name: add workers to the swarm
+#   hosts: workers
+#   become: true
+#   roles:
+#     - docker-swarm-add-workers

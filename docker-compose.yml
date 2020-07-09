@@ -1,0 +1,52 @@
+version: '3.7'
+networks:
+  t2fp-network:
+    driver: overlay
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
+    environment:
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      URL: ${URL}
+    networks:
+    - t2fp-network
+    deploy:
+      replicas: 2
+  frontend:
+    image: t2fp/frontend:final
+    ports:
+    - target: 4200
+      published: 4200
+      protocol: tcp
+    environment:
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      URL: ${URL}
+    networks:
+    - t2fp-network
+    deploy:
+      replicas: 2
+  backend:
+    image: t2fp/backend:new
+    ports:
+    - target: 9966
+      published: 9966
+      protocol: tcp
+    environment:
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      URL: ${URL}
+    networks:
+    - t2fp-network
+    deploy:
+      replicas: 2
+      
