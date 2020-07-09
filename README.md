@@ -43,6 +43,10 @@ An EKS Cluster, consisting of a manager node and two worker nodes, sits inside a
 
 Once the cluster is deployed, the replicas are load-balanced across the worker nodes. NGINX is configured so that vulnerable ports (4200, 9966) are not open to the public, especially those who intend to be malicious. Only port 80 is accessible to the open internet for that reason - this is achieved through an Internet Gateway that is attached to a Route Table associated with the EC2 instances.
 
+## MoSCoW
+![](https://github.com/Jortuk/FinalProject/blob/readme/images/moscow.png)
+We set out the requirements for this project in order to plan and estimate our tasks in order to meet the MVP. Firstly we decided that we must have the front and back end of the application deployed, which was the first task we set about completing. In addition, it was also necessary to have a continuous integration/deployment workflow, so we discussed what tools and technologies we would use to fulfill this criteria and added them into our Trello planning. Next we decided that to ensure quality of the application and adhere to best practices, we should include testing of the app. Upon reading the backend documentation, we realised that there was already a database encoded with the app, however we thought it would be better to include an external database but we added this to our 'could have' criteria as it was not necessary to meet the MVP. Finally, the project only required us to deploy the application and we were instructed not to change any of the source code, so we added this to the 'won't have' criteria. 
+
 ## Trello Board <a name="trello"></a>
 In terms of project tracking, we used a kanban-style Trello Board. Agile methodology was carried out where possible, in line with the project brief. Multiple sprints were conducted, as well as daily scrums. After our morning scrum, the group then divided into sub-groups to complete certain tasks. At the end of the day, the group help another meeting to see how the sub-groups got on with their tasks to coordinate workflow. What's more, a sprint retrospective was scheduled towards the end of project completion.
 
