@@ -28,10 +28,10 @@ echo "Enter the following command to befin Terraform build"
 
 echo ""
 
-echo '~      cd start-up/ && terraform init'
+echo '~      cd Terraform/start-up/ && terraform init'
 
 echo ""
 
-echo '~      terraform apply -lock=false -var 'username="admin"' -var 'password="group2password"' -auto-approve'
+echo '~      terraform apply'
 
 echo ""
