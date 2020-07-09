@@ -205,7 +205,7 @@ Ansible was used to provision the VMs with docker and set up the master and node
 ### Jenkins <a name="jenkins"></a>
 Jenkins was used to provision the manager node with docker and ansible, and deploy ansible to run the scripts. Jenkins in definition is an open source automation tool which was written in java for the purpose of fulfilling business continuous integration problem. It allows the users to build and test the software projects continuously hence making it easier for developers to integrate changes to the project and it also allows for users such as myself to obtain a fresh build.
 
-![2020-07-09](https://user-images.githubusercontent.com/64255340/87095941-a7a8bf80-c239-11ea-895b-1f0c604f0671.png
+![](images/emman_pipeline.png)
 
 There was five stages which the deployment pipeline had to go through. The first being the Declarative Checkout SCM. This sections essentially checks and structures the method in which the build of the pipeline would occur. The stage was the Installation of the environment. This stage accessed the installation.sh and downloaded the environment required to begin the deployment of the application. The third stage was the testing environment which was the test written to check the back-end of the application. It was used automate the testing within Jenkins. The fourth stage was setting up swarm which required installing docker using ansible within the nodes and the final stage was deploying stage which pulled down the images from DockerHub and deployed the application, it then deployed the whole application using Nginx as the reverse proxy.
 
