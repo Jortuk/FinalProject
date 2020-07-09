@@ -32,7 +32,7 @@ Our proposal focused on fulfilling the project brief by using the following arch
 
 ![](images/initial_architecture.PNG)
 
-The above image displays the initial architecture discussed during the first team stand-up. Note, this diagram is not the overall deployment, but the application architecture itself.
+The above image displays the initial architecture discussed during the first team stand-up. Note, this diagram is not the overall deployment, but the application infrastructure itself.
 
 An EKS Cluster, consisting of a manager node and two worker nodes, sits inside a subnet, inside a VPC, within the AWS cloud. The Kube (Kubernetes) Manager encompasses a single pod in which three containers are housed: NGINX, front-end and back-end. 
 
