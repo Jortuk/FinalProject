@@ -6,6 +6,14 @@ pipeline {
             steps{
                 sh 'chmod +x ./script/*'
                 sh 'bash ./script/before_installation.sh'
+                
+            }
+        }
+        
+        stage('Setting Swarm'){
+            
+            steps{
+                
                 sh 'bash ./script/ansible.sh'
             }
         }
