@@ -271,8 +271,6 @@ module "ec2_manager" {
     git clone https://github.com/Jortuk/FinalProject
     cd FinalProject/
     git checkout terraform
-    cd Terraform/
-    sh scripts/terra.sh
     sudo apt install figlet
     EOF
 
