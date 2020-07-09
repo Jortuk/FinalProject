@@ -9,8 +9,8 @@ provider "aws" {
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 resource "aws_key_pair" "key_pair" {
-  name    = "petClinic"
-  key     = file("/home/ubuntu/.ssh/petClinic.pub")
+  key_name    = "petClinic"
+  public_key     = file("/home/ubuntu/.ssh/petClinic.pub")
 }
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
