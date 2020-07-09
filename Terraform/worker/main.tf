@@ -44,6 +44,7 @@ module "ec2_worker1" {
   pub_ip         = true
   user_data      = <<-EOF
   #! /bin/bash
+  sudo apt update
 	EOF
 
   # @@@ TAGS @@@
