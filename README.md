@@ -104,10 +104,14 @@ The matrix demonstrates that the majority of the risks are located in the yellow
 ### Deployment <a name="deployment"></a>
 ![](images/pipeline.PNG)
 
+The above diagram demonstrates the deployment pipeline for the project. The cloud provider used was AWS from which we used resources such as EC2 instances, Subnets, a VPC and so on. Developing on this point, Terraform was used to provide Infrastructure as Code (IaC), which provisioned AWS resources, automatically creating them with a focus on the code being reusable. Furthermore, Jenkins would automatically build the application on the resources made from Terraform via a GitHub Webhook, before deploying it containers using Docker Swarm, loading balancing replicas defined in the docker-compose.yml across worker nodes.
+
+Ansible was installed onto the manager node through Jenkins, then Ansible would install, initialise, and join the worker nodes to the manager with no extra configuration required. Finally, docker images were version controlled using Docker Hub. Scripts in the Jenkinsfile were designed to re-build and push the latest images to Docker Hub before being deployed in the swarm. 
+
 ### Toolchain & Workflow <a name="taw"></a>
 ![](images/toolchain_and_workflow.PNG)
 
-## Technologies <a name="technologies"></a>
+### Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
 * RDS MySQL database to persist data entered on the website. 
 * Ansible to provision VMs.
