@@ -161,3 +161,10 @@ We set up IAM users and gave specific permission policies to the developers depe
 ## CloudTrail
 Cloud trail provided a history of each users activity on the AWS resources so it was easy to keep track of activity on the account. We opted out of creating a cloud trail as this could have incurred extra cost and the team had good communication throughout the project. 
 
+# Future Improvements
+## Further Testing
+If we had had a longer time period to complete the project testing is a key area that we would like to strengthen. Stress testing would be useful to ensure that the application could handle the increased traffic and requests that would occur during a production environment. Unit testing would also provide us a better and in depth indication of the way in which components of the app and code is able to run sucessfully. In addition, we would conduct testing on the database to ensure that the data is stored, retrieved, updated and deleted correctly in accordance with requests from the website.
+## Enhanced Monitoring
+SNS, XRAY
+## Implementing EKS
+
