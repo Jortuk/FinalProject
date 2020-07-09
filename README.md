@@ -7,6 +7,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 2. [Trello Board](#trello)
     - [Initial Board](#ib)
     - [On-going Changes](#ogc)
+    - [Final Board](#fb)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
