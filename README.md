@@ -121,6 +121,8 @@ The matrix demonstrates that the majority of the risks are located in the yellow
 ### Final Application Infrastructure <a name="fpi"></a>
 ![](images/final_architecture.PNG)
 
+The final application infrastructure isn't too dissimilar from the original. As you can see, security groups have been added. The other major change is that instead of using an EKS Cluster, Docker Swarm was used. This is because we had issues deploying the application with kubernetes as the environment variables required for accessing the database would not pass through to the back-end container. After trying several solutions, such as ConfigMaps and Secrets, the decision was made to use Docker Swarm.
+
 ### Deployment <a name="deployment"></a>
 ![](images/pipeline.PNG)
 
@@ -175,7 +177,8 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 
 ## CloudWatch
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/petclinicdashboard.png)
-By creating a custom dashboard, we were able to track the PetClinic's resources. We configured a dashboard that displays the current statistic at the time of access. We decided to monitor the CPU usage and the available memory of the databases. These statistics helped us to troubleshoot when we were having issues running software on the VMs and informed our decision to upgrade the CPUs. 
+By creating a custom dashboard, we were able to track the PetClinic's resources. We configured a dashboard that displays the current statistic at the time of access. We decided to monitor the CPU usage and the available memory of the databases. These statistics helped us to troubleshoot when we were having issues running software on the VMs and informed our decision to upgrade the CPUs.
+
 ### Alarms
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/alarms.png)
 We set up alarms to trigger when CPU usage went above 80. We also set up an alarm to notify the team when the memory availability of the databases was running low, as we thought this would be useful should the website be deployed in production. 
