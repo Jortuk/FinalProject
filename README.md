@@ -44,6 +44,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 13. [Installation Guide](#insg)
 14. [Authors](#authors)
 15. [Acknowledgements](#ack)
+16. [License](#license)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -301,7 +302,7 @@ Jordan Taylor, Sophie Cosgrove, Emmanuel Agyapong, Sean McCann, Junaid Sidat
 ## Acknowledgements <a name="ack"></a>
 The QA Academy trainers for their enjoyable and detailed training sessions, as well as my fellow QA Academy Trainees.
 
-## License
+## License <a name="license"></a>
 MIT License
 
 Copyright (c) 2020 Jordan Taylor, Sophie Cosgrove, Emmanuel Agyapong, Sean McCann, Junaid Sidat
