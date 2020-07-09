@@ -29,7 +29,7 @@ Our proposal focused on fulfilling the project brief by using the following arch
 
 ![](images/initial_architecture.PNG)
 
-The above image displays the initial architecture discussed during the first team stand-up. Note, this diagram is not the overall deployment, but the application itself.
+The above image displays the initial architecture discussed during the first team stand-up. Note, this diagram is not the overall deployment, but the application architecture itself.
 
 An EKS Cluster, consisting of a manager node and two worker nodes, sits inside a subnet, inside a VPC, within the AWS cloud. The Kube (Kubernetes) Manager encompasses a single pod in which three containers are housed: NGINX, front-end and back-end. 
 
@@ -48,7 +48,13 @@ As you can see, tasks on the board are colour coordinated. This helped us to det
 ### On-going Changes <a name="ogc"></a>
 ![](images/ongoing_trello_board.PNG)
 
-
+During project progression, several changes were made. This was a result of issues or a change of mind in terms of the technology used:
+- Deciding to use Docker Swarm opposed to the originally planned EKS Cluster. This was due to an issue with passing the environment variables, required to access the database, to the back-end container
+- NGINX was used to load-balance containers across nodes
+- Multiple branches were created on the GitHub repository to enable sub-groups to work on independent features without interference
+- Jenkins was used instead of AWS CodePipeline - this is because Jenkins is a CI/CD server we were all more familiar with 
+- Security groups were configured to better manage permissions and traffic allocation
+- An external RDS instance was created to act as a database for deployment 
 
 ## Technologies <a name="technologies"></a>
 * The Spring Pet Clinic application is a spring boot application we ran using maven. 
