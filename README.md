@@ -124,6 +124,7 @@ Jenkins was used to provision the manager node with docker and ansible, and depl
 
 ## CloudWatch
 ![](https://github.com/Jortuk/FinalProject/blob/readme/images/petclinicdashboard.png)
+By creating a custom dashboard, we were able to track the PetClinic's resources. We configured a dashboard that displays the current statistic at the time of access. We decided to monitor the CPU usage and the available memory of the databases. These statistics helped us to troubleshoot when we were having issues running software on the VMs and informed our decision to upgrade the CPUs. 
 # Billing 
 | Date | Spend ($) | Resources |
 | --- | ---:| --- |
