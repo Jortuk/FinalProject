@@ -82,6 +82,8 @@ During project progression, several changes were made. This was a result of issu
 ### Final Board <a name="fb"></a>
 ![](images/final_board.PNG)
 
+After each of the checklists were completed, the labels on each of the cards was changed to completed and the cards were moved to the done section of the board. In the final stages of completing the project, we had just to complete the presentation, finalise the readme and record the youtube tutorials for deploying the app. We also plotted our future improvements and tasks that we did not get round to completing in the 'To Do' section of the board, as theoretically we would be completing these in the next sprint. 
+
 ## Risk Assessment <a name="ra"></a>
 
 | Number |Date | Risk | Response Strategy | Outcome | Likelihood | Impact | Proximity |
