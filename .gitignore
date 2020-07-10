@@ -1,0 +1,29 @@
+
+# Local .terraform directories
+**/.terraform/*
+.terraform
+# .tfstate files
+*.tfstate   
+*.tfstate.*
+*.terraform/plugins
+**/.terraform/**
+*/**/.tfvars
+*.tfstate
+.terraform/plugins/linux_amd64/terraform-provider-aws_v2.69.0_x4
+# Crash log files
+crash.log
+
+/pycache/
+
+*.pyc
+
+*.env
+
+*.sql
+
+/project2-venv/
+
+/venv/
+
+/.vscode/
+

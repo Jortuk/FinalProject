@@ -1,0 +1,36 @@
+- name: Check swarm status
+  shell: docker node ls
+  register: swarm_status
+  ignore_errors: true
+  tags: swarm
+
+- name: Initialise docker swarm
+  shell: docker swarm init
+  when: swarm_status.rc != 0
+  run_once: true
+  tags: swarm
+
+- name: Manager hostname
+  shell: hostname
+  register: manager_hostname
+  tags: swarm
+
+- name: Get the manager node join-token
+  shell: docker swarm join-token --quiet manager
+  register: manager_token
+  tags: swarm
+
+# - name: Get worker node join-token
+#   shell: docker swarm join-token --quiet worker
+#   register: worker_token
+#   tags: swarm
+
+# - name: Get worker token
+#   add_host:
+#     name: "token"
+#     value: "{{ worker_token.stdout }}"
+
+- name: Get manager hostname
+  add_host:
+    name: "manager_hostname"
+    value: "{{manager_hostname.stdout}}"

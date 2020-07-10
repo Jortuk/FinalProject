@@ -1,0 +1,61 @@
+# Created at 2020-07-03T13:28:55.587
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+# Created at 2020-07-03T13:28:55.769
+Unexpected IOException with stream: INFO  ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+
+
+# Created at 2020-07-03T13:28:55.769
+Unexpected IOException with stream: INFO  ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+
+
+# Created at 2020-07-03T13:28:55.782
+Unexpected IOException with stream: INFO  LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2020-07-03T13:28:55.798
+Unexpected IOException with stream: INFO  LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2020-07-03T13:28:55.855
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-3 - Shutdown initiated...
+
+
+# Created at 2020-07-03T13:28:55.860
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-2 - Shutdown initiated...
+
+
+# Created at 2020-07-03T13:28:55.881
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+
+
+# Created at 2020-07-03T13:28:55.938
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-3 - Shutdown completed.
+
+
+# Created at 2020-07-03T13:28:55.942
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+
+
+# Created at 2020-07-03T13:28:55.957
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-2 - Shutdown completed.
+
+
+# Created at 2020-07-03T13:28:56.386
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-4 - Starting...
+
+
+# Created at 2020-07-03T13:28:56.386
+Unexpected IOException with stream: INFO  PoolBase - HikariPool-4 - Driver does not support get/set network timeout for connections. (feature not supported)
+
+
+# Created at 2020-07-03T13:28:56.395
+Unexpected IOException with stream: INFO  HikariDataSource - HikariPool-4 - Start completed.
+
+
