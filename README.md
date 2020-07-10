@@ -34,6 +34,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
     - [Jordan and Sophie: Docker Swarm](#jos)
     - [Emmanuel: Jenkins](#emman)
     - [Junaid and Emmanuel: Front-end](#jae)
+    - [Sean and Junaid: Terraform](#saj)
 11. [Testing](#testing)
     - [Unit Testing](#unit)
     - [Front End Testing](#front)
@@ -267,6 +268,37 @@ For example, when running on a t2.medium instance, the "Testing environment" sta
 
 ### Junaid and Emmanuel: Front-end <a name="jae"></a>
 Emmanuel and I were tasked with containerising and running the frontend of the application. This involved the installation of JavaScript runtime environment node.js and the web-application framework angular in order to run the java application successfully. We had a few difficulties initially with installing dependencies due to what seemed to be out-of-date dependencies defined in the package.json file, where the dependencies were listed. As a result, working versions of angular and other dependencies were found and installed which helped resolve the issues that we faced during initial installation of the frontend application. Once we were able to run the application on the internet, we moved onto dockerizing the frontend application by creating a Dockerfile. There were brief issues with the website not showing when attempting to run the application with docker commands. This issue was resolved by mapping the port in the docker command by using the “-p” flag in the “docker run” command. Once this issue was resolved the frontend application was ready for communication with the backend, which was taken care of by Sophie and Jordan.
+
+### Sean and Junaid: Terraform <a name="saj"></a>
+
+Tasked with creating the Terraform files we set of first creating the modules needed to help speed up the process of creating our resources.
+
+We put together a library of the following resources...
+* EC2
+* IAM
+* Internet Gateway
+* RDS
+* Routes
+* Association Routes
+* Security Group
+* Subnet
+* VPC
+* EKS
+
+As we progressed through testing both front and back end, our terraform was to meet the newest requirements.
+They changed from a single Manager node and 2 Worker Nodes, to planning towards an EKS Deployment.
+
+With the later switch from Kubernetes to Docker Swarm the build process required a large rethink. The reason for this is due to the way in which Docker Swarm communicated with its worker nodes via an ssh key.
+As a result we needed to build 2 terraform files, one to be accessed by the manager and the other via a local or Developer machine. This it to provide the Manager node with the necessary privileges to access its workers.
+
+The build process required the user to created and access a terminal, you would be required to clone the git repo and enter its directory, changing the branch to terraform. Here you would have to install the awscli and Terrafom, configure your AWS all before running the Terraform command.
+We had hoped to automate this process but unfortunately some commands in the build pipeline created issues later as the commands delivered via the EC2 resource field `user_data` would be owned by the root user, failing to allow access to Worker Nodes from the Manager.
+As a result the build process can be done using scripts that automate large chucks of the process when creating and naming your ssh keys, installing terraform and running terraform files for you.
+
+In the next sprint it would be great to automate this process so all the user is required to do is enter a single build command and the system runs through each process.
+
+By achieving what we have, it has improved the build time of our system.
+Enabling us to build all our infrastructure from nothing, to having Jenkins running the build process in 20 minutes, with a successful build and fully functional RDS Database after leaving Jenkins to process ansible and other commands.
 
 ## Testing <a name="testing"></a>
 ### Unit Testing <a name="unit"></a>
