@@ -34,7 +34,7 @@
 # * terraform init
 # * terraform apply
 
-# Using the IP address of the worker node include it in the area marker {add ip}...
+# Using the IP address of the worker node include it here, this is to be sourced by jenkins later...
 # * sudo vim .bashrc
 #   ~ export USERNAME=""
 #   ~ export PASSWORD=""
@@ -226,7 +226,7 @@ module "iam_policy_3" {
 
 module "mysql_rds" {
   source         = "./RDS"
-  instance_name  = "petclinicdbtesting"
+  instance_name  = "petclinicdb"
   instance_class = "db.t2.micro"
   vpc_sg_id      = [module.sg.id]
   db_subnet_id1  = module.subnet.id

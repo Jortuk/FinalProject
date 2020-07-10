@@ -3,8 +3,6 @@
 # get a key to apply to new machine
 sh Terraform/scripts/keygen.sh
 
-echo ""
-
 # install requirments for Terraform
 sh Terraform/scripts/terra.sh
 
@@ -24,7 +22,7 @@ aws configure
 
 echo ""
 
-echo "Enter the following command to befin Terraform build"
+echo "Enter the following command to begin Terraform build"
 
 echo ""
 
