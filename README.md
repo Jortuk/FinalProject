@@ -44,6 +44,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 13. [Installation Guide](#insg)
 14. [Authors](#authors)
 15. [Acknowledgements](#ack)
+16. [License](#license)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
@@ -239,6 +240,7 @@ We set up alarms to trigger when CPU usage went above 80. We also set up an alar
 07/07/20 | 5.68 | 2 t2.micro, RDS, 2 t2.small and 2 t2.medium, EKS |
 08/07/20 | 8.48 |  2 t2.micro, RDS and 2 t2.medium |
 09/07/20 | 9.91 | 2 t2.medium, 2 t2.micro, 2 t2.small RDS |
+10/07/20 | 11.57 | t2.large, t2.micro, t2.medium, t2.small, RDS |
 
 For this project we had a budget of £20. Initially we tried to stay within the free tier usage that AWS offers, however the apps required a higher memory and CPU usage than what the free tier instances offered. We gradually increased the size of the instances which in turn incurred a higher cost. In addition, the EKS also increased the charges, after not being sucessful with Kubernetes we decided not to use this service. In order to track our spends, we set up a billing alert to notify the account owner's email when 80% of the budget was reached.
 
@@ -301,3 +303,14 @@ Jordan Taylor, Sophie Cosgrove, Emmanuel Agyapong, Sean McCann, Junaid Sidat
 
 ## Acknowledgements <a name="ack"></a>
 The QA Academy trainers for their enjoyable and detailed training sessions, as well as my fellow QA Academy Trainees.
+
+## License <a name="license"></a>
+MIT License
+
+Copyright (c) 2020 Jordan Taylor, Sophie Cosgrove, Emmanuel Agyapong, Sean McCann, Junaid Sidat
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
