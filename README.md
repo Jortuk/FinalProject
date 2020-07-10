@@ -327,7 +327,9 @@ It would be useful to have a CloudWatch event trigger a lambda function that can
 Rather than deploying the application through Docker Swarm, deploying the application with EKS would be a more robust and easily manageable solution. Initially this is what we intended for the project, however using EKS consumed a larger amount of our budget and time, as constructing and destructing the service was complicated and lengthy due to having to delete dependencies before having permission to take the stack and cluster down. In addition, we also struggled with getting the environment variables across to the container which we decided was hindering our progress with the project as a whole. We concluded that Docker Swarm would be a better solution to meet the MVP by the deadline, however if we had more time and a higher budget we would like to include EKS in the deployment of the app.
 
 ## Installation Guide <a name="insg"></a>
-To install and deploy the application yourself, refer to the following video:
+To install and deploy the application yourself, direct to the following YouTube channel and watch the video:
+
+https://www.youtube.com/channel/UC4sgKzFWrfBnnusluJrBOvw?view_as=subscriber
 
 ## Authors <a name="authors"></a>
 Jordan Taylor, Sophie Cosgrove, Emmanuel Agyapong, Sean McCann, Junaid Sidat
