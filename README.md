@@ -44,6 +44,7 @@ Final group project following the QAC Final Project Brief (DevOps) due 10th July
 13. [Installation Guide](#insg)
 14. [Authors](#authors)
 15. [Acknowledgements](#ack)
+16. [License](#license)
 
 ## Brief <a name="brief"></a>
 As specified in the project brief, the following applications are to be deployed:
