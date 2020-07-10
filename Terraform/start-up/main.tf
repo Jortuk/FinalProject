@@ -36,10 +36,10 @@
 
 # Using the IP address of the worker node include it in the area marker {add ip}...
 # * sudo vim .bashrc
-#   ~ export USERNAME="admin"
-#   ~ export PASSWORD="group2password"
-#   ~ export URL="petclinicdb.cncg09p34dh0.eu-west-1.rds.amazonaws.com"
-#   ~ export worker={add ip}
+#   ~ export USERNAME=""
+#   ~ export PASSWORD=""
+#   ~ export URL=""
+#   ~ export worker=
 #   ~ export ANSIBLE_HOST_KEY_CHECKING=False
 
 # Aquire Secret Key for Jenkins...

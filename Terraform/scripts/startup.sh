@@ -28,10 +28,6 @@ echo "Enter the following command to befin Terraform build"
 
 echo ""
 
-echo '~      cd Terraform/start-up/ && terraform init'
-
-echo ""
-
-echo '~      terraform apply'
+echo '~      cd Terraform/start-up/ && terraform init && terraform apply'
 
 echo ""
